@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		C7476FAD282EDA3900185AE3 /* dashComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7476FAC282EDA3900185AE3 /* dashComponent.swift */; };
+		C7476FAF282EE3A400185AE3 /* saveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7476FAE282EE3A400185AE3 /* saveButton.swift */; };
 		E5427326282D8F6E009A0CC1 /* steezApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5427325282D8F6E009A0CC1 /* steezApp.swift */; };
 		E5427328282D8F6E009A0CC1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5427327282D8F6E009A0CC1 /* ContentView.swift */; };
 		E542732A282D8F73009A0CC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5427329282D8F73009A0CC1 /* Assets.xcassets */; };
@@ -14,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		C7476FAC282EDA3900185AE3 /* dashComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dashComponent.swift; sourceTree = "<group>"; };
+		C7476FAE282EE3A400185AE3 /* saveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = saveButton.swift; sourceTree = "<group>"; };
 		E5427322282D8F6E009A0CC1 /* steez.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = steez.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5427325282D8F6E009A0CC1 /* steezApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = steezApp.swift; sourceTree = "<group>"; };
 		E5427327282D8F6E009A0CC1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -35,6 +39,8 @@
 		0B634B2C282ED5A500A9C166 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				C7476FAC282EDA3900185AE3 /* dashComponent.swift */,
+				C7476FAE282EE3A400185AE3 /* saveButton.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -153,7 +159,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				C7476FAD282EDA3900185AE3 /* dashComponent.swift in Sources */,
 				E5427328282D8F6E009A0CC1 /* ContentView.swift in Sources */,
+				C7476FAF282EE3A400185AE3 /* saveButton.swift in Sources */,
 				E5427326282D8F6E009A0CC1 /* steezApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
