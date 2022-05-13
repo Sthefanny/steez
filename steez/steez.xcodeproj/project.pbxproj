@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B634B2F282ED98900A9C166 /* blocoDeCor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B634B2E282ED98900A9C166 /* blocoDeCor.swift */; };
+		0B634B31282EE0DB00A9C166 /* button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B634B30282EE0DB00A9C166 /* button.swift */; };
 		C7476FAD282EDA3900185AE3 /* dashComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7476FAC282EDA3900185AE3 /* dashComponent.swift */; };
 		C7476FAF282EE3A400185AE3 /* saveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7476FAE282EE3A400185AE3 /* saveButton.swift */; };
 		933BC663282EDAE500291AFC /* colorPickerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933BC662282EDAE500291AFC /* colorPickerComponent.swift */; };
@@ -18,6 +20,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B634B2E282ED98900A9C166 /* blocoDeCor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = blocoDeCor.swift; sourceTree = "<group>"; };
+		0B634B30282EE0DB00A9C166 /* button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = button.swift; sourceTree = "<group>"; };
 		C7476FAC282EDA3900185AE3 /* dashComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dashComponent.swift; sourceTree = "<group>"; };
 		C7476FAE282EE3A400185AE3 /* saveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = saveButton.swift; sourceTree = "<group>"; };
 		933BC662282EDAE500291AFC /* colorPickerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = colorPickerComponent.swift; sourceTree = "<group>"; };
@@ -43,6 +47,8 @@
 		0B634B2C282ED5A500A9C166 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				0B634B2E282ED98900A9C166 /* blocoDeCor.swift */,
+				0B634B30282EE0DB00A9C166 /* button.swift */,
 				C7476FAC282EDA3900185AE3 /* dashComponent.swift */,
 				C7476FAE282EE3A400185AE3 /* saveButton.swift */,
 				933BC662282EDAE500291AFC /* colorPickerComponent.swift */,
@@ -175,6 +181,8 @@
 				E5427328282D8F6E009A0CC1 /* ContentView.swift in Sources */,
 				C7476FAF282EE3A400185AE3 /* saveButton.swift in Sources */,
 				E5427326282D8F6E009A0CC1 /* steezApp.swift in Sources */,
+				0B634B2F282ED98900A9C166 /* blocoDeCor.swift in Sources */,
+				0B634B31282EE0DB00A9C166 /* button.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
