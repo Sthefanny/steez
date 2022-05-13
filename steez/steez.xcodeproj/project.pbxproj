@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0B634B2F282ED98900A9C166 /* blocoDeCor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B634B2E282ED98900A9C166 /* blocoDeCor.swift */; };
+		0B634B31282EE0DB00A9C166 /* button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B634B30282EE0DB00A9C166 /* button.swift */; };
 		E5427326282D8F6E009A0CC1 /* steezApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5427325282D8F6E009A0CC1 /* steezApp.swift */; };
 		E5427328282D8F6E009A0CC1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5427327282D8F6E009A0CC1 /* ContentView.swift */; };
 		E542732A282D8F73009A0CC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5427329282D8F73009A0CC1 /* Assets.xcassets */; };
@@ -14,6 +16,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		0B634B2E282ED98900A9C166 /* blocoDeCor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = blocoDeCor.swift; sourceTree = "<group>"; };
+		0B634B30282EE0DB00A9C166 /* button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = button.swift; sourceTree = "<group>"; };
 		E5427322282D8F6E009A0CC1 /* steez.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = steez.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5427325282D8F6E009A0CC1 /* steezApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = steezApp.swift; sourceTree = "<group>"; };
 		E5427327282D8F6E009A0CC1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -35,6 +39,8 @@
 		0B634B2C282ED5A500A9C166 /* Components */ = {
 			isa = PBXGroup;
 			children = (
+				0B634B2E282ED98900A9C166 /* blocoDeCor.swift */,
+				0B634B30282EE0DB00A9C166 /* button.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -155,6 +161,8 @@
 			files = (
 				E5427328282D8F6E009A0CC1 /* ContentView.swift in Sources */,
 				E5427326282D8F6E009A0CC1 /* steezApp.swift in Sources */,
+				0B634B2F282ED98900A9C166 /* blocoDeCor.swift in Sources */,
+				0B634B31282EE0DB00A9C166 /* button.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
