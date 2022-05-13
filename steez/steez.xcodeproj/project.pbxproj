@@ -32,9 +32,25 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0B634B2C282ED5A500A9C166 /* Components */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Components;
+			sourceTree = "<group>";
+		};
+		0B634B2D282ED61A00A9C166 /* Design System */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = "Design System";
+			sourceTree = "<group>";
+		};
 		E5427319282D8F6E009A0CC1 = {
 			isa = PBXGroup;
 			children = (
+				0B634B2D282ED61A00A9C166 /* Design System */,
+				0B634B2C282ED5A500A9C166 /* Components */,
 				E5427324282D8F6E009A0CC1 /* steez */,
 				E5427323282D8F6E009A0CC1 /* Products */,
 			);
