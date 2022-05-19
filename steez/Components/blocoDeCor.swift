@@ -11,21 +11,79 @@ struct blocoDeCor: View {
     var body: some View {
         
         
-     
-        Button(action: {
-            // What to perform
-        }) {
-            VStack{
-            RoundedRectangle(cornerRadius: 5)
-                .frame(width: 98, height: 74, alignment: .center)
+        
+        List {
+            
+
+            ZStack{
+                
+                RoundedRectangle(cornerRadius: 5)
+                    .frame(width: 326, height: 95, alignment: .center)
+                    .foregroundColor(.gray)
                 
                 
+                VStack{
+                    Text ("Padrao 01")
+                        .font(.body)
+                        .fontWeight(.bold)
+                        .frame(width: 270, height: 18, alignment: .leading)
+                        .foregroundColor(.white)
                     
+                    HStack{
+                        
+                        
+                        RoundedRectangle(cornerRadius: 5)
+                            .frame(width: 55, height: 40, alignment: .center)
+                            .padding(.trailing, -6.0)
+                        
+                        RoundedRectangle(cornerRadius: 5)
+                            .frame(width: 55, height: 40, alignment: .center)
+                            .padding(.trailing, -6.0)
+                        
+                        RoundedRectangle(cornerRadius: 5)
+                            .frame(width: 55, height: 40, alignment: .center)
+                            .padding(.trailing, -6.0)
+                        
+                        RoundedRectangle(cornerRadius: 5)
+                            .frame(width: 55, height: 40, alignment: .center)
+                            .padding(.trailing, -6.0)
+                        
+                        RoundedRectangle(cornerRadius: 5)
+                            .frame(width: 55, height: 40, alignment: .center)
+                            .padding(.trailing, -6.0)
+                        
+                        
+                        
+                        
+                    }
+                }
+            }
+            .swipeActions (allowsFullSwipe: false) {
+                
+                Button(role: .destructive) {
+                    print("editar")
+                } label: {
+                    Label("Editar", systemImage: "square.and.pencil")
+                }
+                .tint(.indigo)
+                
+                Button(role: .destructive) {
+                    print("deletar")
+                } label: {
+                    Label("Deletar", systemImage: "trash.fill")
+                        
+                }
                 
             }
+            .listRowBackground(Color.gray)
         }
-     }
+        .onTapGesture {
+            print("clicado")
+        }
+        
+    }
 }
+
 
 struct blocoDeCor_Previews: PreviewProvider {
     static var previews: some View {

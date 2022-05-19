@@ -9,10 +9,10 @@
 /* Begin PBXBuildFile section */
 		0B634B2F282ED98900A9C166 /* blocoDeCor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B634B2E282ED98900A9C166 /* blocoDeCor.swift */; };
 		0B634B31282EE0DB00A9C166 /* button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B634B30282EE0DB00A9C166 /* button.swift */; };
-		C7476FAD282EDA3900185AE3 /* dashComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7476FAC282EDA3900185AE3 /* dashComponent.swift */; };
-		C7476FAF282EE3A400185AE3 /* saveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7476FAE282EE3A400185AE3 /* saveButton.swift */; };
 		933BC663282EDAE500291AFC /* colorPickerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933BC662282EDAE500291AFC /* colorPickerComponent.swift */; };
 		933BC666282EE13800291AFC /* ColorPickerRing in Frameworks */ = {isa = PBXBuildFile; productRef = 933BC665282EE13800291AFC /* ColorPickerRing */; };
+		C7476FAD282EDA3900185AE3 /* dashComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7476FAC282EDA3900185AE3 /* dashComponent.swift */; };
+		C7476FAF282EE3A400185AE3 /* saveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7476FAE282EE3A400185AE3 /* saveButton.swift */; };
 		E5427326282D8F6E009A0CC1 /* steezApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5427325282D8F6E009A0CC1 /* steezApp.swift */; };
 		E5427328282D8F6E009A0CC1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5427327282D8F6E009A0CC1 /* ContentView.swift */; };
 		E542732A282D8F73009A0CC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5427329282D8F73009A0CC1 /* Assets.xcassets */; };
@@ -22,9 +22,9 @@
 /* Begin PBXFileReference section */
 		0B634B2E282ED98900A9C166 /* blocoDeCor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = blocoDeCor.swift; sourceTree = "<group>"; };
 		0B634B30282EE0DB00A9C166 /* button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = button.swift; sourceTree = "<group>"; };
+		933BC662282EDAE500291AFC /* colorPickerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = colorPickerComponent.swift; sourceTree = "<group>"; };
 		C7476FAC282EDA3900185AE3 /* dashComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dashComponent.swift; sourceTree = "<group>"; };
 		C7476FAE282EE3A400185AE3 /* saveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = saveButton.swift; sourceTree = "<group>"; };
-		933BC662282EDAE500291AFC /* colorPickerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = colorPickerComponent.swift; sourceTree = "<group>"; };
 		E5427322282D8F6E009A0CC1 /* steez.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = steez.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5427325282D8F6E009A0CC1 /* steezApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = steezApp.swift; sourceTree = "<group>"; };
 		E5427327282D8F6E009A0CC1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
