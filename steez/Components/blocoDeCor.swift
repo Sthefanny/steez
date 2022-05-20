@@ -8,34 +8,34 @@
 import SwiftUI
 
 struct blocoDeCor: View {
+    
+    var selectedPattern: Bool
+    
     var body: some View {
         
         
         
-        List {
+      List{
             
-
-            ZStack{
+            ZStack(alignment: .center){
+                
                 
                 RoundedRectangle(cornerRadius: 5)
-                    .frame(width: 326, height: 95, alignment: .center)
-                    .foregroundColor(.gray)
+                    .frame(width: 326, height: 95)
+                    .foregroundColor(selectedPattern ? .gray : .clear)
                 
-                
-                VStack{
+                VStack {
                     Text ("Padrao 01")
                         .font(.body)
                         .fontWeight(.bold)
-                        .frame(width: 270, height: 18, alignment: .leading)
+                        .frame(width: 270, height: 18, alignment: .topLeading)
                         .foregroundColor(.white)
                     
                     HStack{
                         
-                        
                         ForEach (1..<6) { i in
                             quadradinhoDeCor()
                         }
-                        
                         
                     }
                 }
@@ -53,12 +53,16 @@ struct blocoDeCor: View {
                     print("deletar")
                 } label: {
                     Label("Deletar", systemImage: "trash.fill")
-                        
+                    
                 }
                 
             }
-            .listRowBackground(Color.gray)
+            .listRowBackground(Color.clear)
+            .listRowSeparator(.hidden)
         }
+        .listStyle(.plain)
+        //        .listRowInsets(EdgeInsets())
+        //        .background(Color.clear)
         .onTapGesture {
             print("clicado")
         }
@@ -69,6 +73,6 @@ struct blocoDeCor: View {
 
 struct blocoDeCor_Previews: PreviewProvider {
     static var previews: some View {
-        blocoDeCor()
+        blocoDeCor(selectedPattern: true)
     }
 }
