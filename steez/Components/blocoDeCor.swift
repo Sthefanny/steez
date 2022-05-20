@@ -32,27 +32,9 @@ struct blocoDeCor: View {
                     HStack{
                         
                         
-                        RoundedRectangle(cornerRadius: 5)
-                            .frame(width: 55, height: 40, alignment: .center)
-                            .padding(.trailing, -6.0)
-                        
-                        RoundedRectangle(cornerRadius: 5)
-                            .frame(width: 55, height: 40, alignment: .center)
-                            .padding(.trailing, -6.0)
-                        
-                        RoundedRectangle(cornerRadius: 5)
-                            .frame(width: 55, height: 40, alignment: .center)
-                            .padding(.trailing, -6.0)
-                        
-                        RoundedRectangle(cornerRadius: 5)
-                            .frame(width: 55, height: 40, alignment: .center)
-                            .padding(.trailing, -6.0)
-                        
-                        RoundedRectangle(cornerRadius: 5)
-                            .frame(width: 55, height: 40, alignment: .center)
-                            .padding(.trailing, -6.0)
-                        
-                        
+                        ForEach (1..<6) { i in
+                            quadradinhoDeCor()
+                        }
                         
                         
                     }
