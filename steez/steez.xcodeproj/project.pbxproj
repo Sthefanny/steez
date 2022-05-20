@@ -14,6 +14,9 @@
 		0B95D38228380B7800445D7B /* quadradinhoDeCor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B95D38128380B7800445D7B /* quadradinhoDeCor.swift */; };
 		933BC663282EDAE500291AFC /* colorPickerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933BC662282EDAE500291AFC /* colorPickerComponent.swift */; };
 		933BC666282EE13800291AFC /* ColorPickerRing in Frameworks */ = {isa = PBXBuildFile; productRef = 933BC665282EE13800291AFC /* ColorPickerRing */; };
+		933BC663282EDAE500291AFC /* colorPickerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933BC662282EDAE500291AFC /* colorPickerComponent.swift */; };
+		933BC666282EE13800291AFC /* ColorPickerRing in Frameworks */ = {isa = PBXBuildFile; productRef = 933BC665282EE13800291AFC /* ColorPickerRing */; };
+		93EBFF602836BE3F00C53089 /* skateSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EBFF5F2836BE3F00C53089 /* skateSlider.swift */; };
 		C7476FAD282EDA3900185AE3 /* dashComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7476FAC282EDA3900185AE3 /* dashComponent.swift */; };
 		C7476FAF282EE3A400185AE3 /* saveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7476FAE282EE3A400185AE3 /* saveButton.swift */; };
 		C7FFC19C2836BB1B0037C62F /* AddPatternButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FFC19B2836BB1B0037C62F /* AddPatternButton.swift */; };
@@ -32,6 +35,8 @@
 		933BC662282EDAE500291AFC /* colorPickerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = colorPickerComponent.swift; sourceTree = "<group>"; };
 		0B95D38128380B7800445D7B /* quadradinhoDeCor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = quadradinhoDeCor.swift; sourceTree = "<group>"; };
 		933BC662282EDAE500291AFC /* colorPickerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = colorPickerComponent.swift; sourceTree = "<group>"; };
+		933BC662282EDAE500291AFC /* colorPickerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = colorPickerComponent.swift; sourceTree = "<group>"; };
+		93EBFF5F2836BE3F00C53089 /* skateSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skateSlider.swift; sourceTree = "<group>"; };
 		C7476FAC282EDA3900185AE3 /* dashComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dashComponent.swift; sourceTree = "<group>"; };
 		C7476FAE282EE3A400185AE3 /* saveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = saveButton.swift; sourceTree = "<group>"; };
 		C7FFC19B2836BB1B0037C62F /* AddPatternButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPatternButton.swift; sourceTree = "<group>"; };
@@ -68,6 +73,7 @@
 				C7476FAE282EE3A400185AE3 /* saveButton.swift */,
 				933BC662282EDAE500291AFC /* colorPickerComponent.swift */,
 				C7FFC19D2836BEEB0037C62F /* ModalView.swift */,
+				93EBFF5F2836BE3F00C53089 /* skateSlider.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -214,6 +220,7 @@
 				0B634B2F282ED98900A9C166 /* blocoDeCor.swift in Sources */,
 				0B95D38228380B7800445D7B /* quadradinhoDeCor.swift in Sources */,
 				0B634B31282EE0DB00A9C166 /* button.swift in Sources */,
+				93EBFF602836BE3F00C53089 /* skateSlider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
