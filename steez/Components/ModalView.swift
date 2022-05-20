@@ -15,6 +15,8 @@ enum BookBottomSheetPosition: CGFloat, CaseIterable {
 struct BookDetailView: View {
     @State private var name: String = ""
     @State var bottomSheetPosition: BookBottomSheetPosition = .middle
+    @Binding var test: UIColor
+    @State var quadradinhoCliked: Int
     
     let backgroundColors: [Color] = [Color(red: 0.1, green: 0.1, blue: 0.1)]
     
@@ -35,15 +37,23 @@ struct BookDetailView: View {
                         .font(.system(size: 26, weight: .bold))
                         .padding(.bottom, 40)
                         .foregroundColor(.white)
-                       
-                        
-
+                   
+                    colorPickerComponent(color: test)
+                        .padding(.bottom, 40)
                     
+                    HStack{
+                    dashComponent()
+                    ForEach (1..<6) { i in
+                        quadradinhoDeCor(isCliked: quadradinhoCliked == i, color: quadradinhoCliked == i ? UIColor.green : UIColor.black)
+                            .padding(.horizontal, 5)
+                            .onTapGesture {
+                                quadradinhoCliked = i
+                            }
+                                            }
+                    }
                     
-                    colorPickerComponent()
-                    
-                        saveButton()
-                    .padding(.top, 50)
+                    saveButton()
+                    .padding(.top, 30)
                     
                     Spacer(minLength: 0)
                 }
@@ -52,22 +62,8 @@ struct BookDetailView: View {
     }
 }
 
-////The gradient ButtonStyle.
-//struct BookButton: ButtonStyle {
-//
-//    let colors: [Color]
-//
-//    func makeBody(configuration: Configuration) -> some View {
-//        configuration.label
-//            .font(.headline)
-//            .foregroundColor(.white)
-//            .padding()
-//            .background(LinearGradient(gradient: Gradient(colors: self.colors), startPoint: .topLeading, endPoint: .bottomTrailing))
-//    }
-//}
-
 struct ModalView_Previews: PreviewProvider {
     static var previews: some View {
-        BookDetailView()
+        BookDetailView(test: .constant(UIColor.red), quadradinhoCliked: 0)
     }
 }
