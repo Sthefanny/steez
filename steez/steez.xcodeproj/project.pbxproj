@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		0B634B2F282ED98900A9C166 /* blocoDeCor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B634B2E282ED98900A9C166 /* blocoDeCor.swift */; };
 		0B634B31282EE0DB00A9C166 /* button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B634B30282EE0DB00A9C166 /* button.swift */; };
+		933BC663282EDAE500291AFC /* colorPickerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933BC662282EDAE500291AFC /* colorPickerComponent.swift */; };
+		933BC666282EE13800291AFC /* ColorPickerRing in Frameworks */ = {isa = PBXBuildFile; productRef = 933BC665282EE13800291AFC /* ColorPickerRing */; };
 		0B95D38228380B7800445D7B /* quadradinhoDeCor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B95D38128380B7800445D7B /* quadradinhoDeCor.swift */; };
 		933BC663282EDAE500291AFC /* colorPickerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933BC662282EDAE500291AFC /* colorPickerComponent.swift */; };
 		933BC666282EE13800291AFC /* ColorPickerRing in Frameworks */ = {isa = PBXBuildFile; productRef = 933BC665282EE13800291AFC /* ColorPickerRing */; };
@@ -16,6 +18,10 @@
 		93EBFF602836BE3F00C53089 /* skateSlider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 93EBFF5F2836BE3F00C53089 /* skateSlider.swift */; };
 		C7476FAD282EDA3900185AE3 /* dashComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7476FAC282EDA3900185AE3 /* dashComponent.swift */; };
 		C7476FAF282EE3A400185AE3 /* saveButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7476FAE282EE3A400185AE3 /* saveButton.swift */; };
+		C7FFC19C2836BB1B0037C62F /* AddPatternButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FFC19B2836BB1B0037C62F /* AddPatternButton.swift */; };
+		C7FFC19E2836BEEB0037C62F /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FFC19D2836BEEB0037C62F /* ModalView.swift */; };
+		C7FFC1A12836C3060037C62F /* BottomSheet in Frameworks */ = {isa = PBXBuildFile; productRef = C7FFC1A02836C3060037C62F /* BottomSheet */; };
+		C7FFC1A42836DDC00037C62F /* Util+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FFC1A32836DDC00037C62F /* Util+View.swift */; };
 		E5427326282D8F6E009A0CC1 /* steezApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5427325282D8F6E009A0CC1 /* steezApp.swift */; };
 		E5427328282D8F6E009A0CC1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5427327282D8F6E009A0CC1 /* ContentView.swift */; };
 		E542732A282D8F73009A0CC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5427329282D8F73009A0CC1 /* Assets.xcassets */; };
@@ -25,12 +31,16 @@
 /* Begin PBXFileReference section */
 		0B634B2E282ED98900A9C166 /* blocoDeCor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = blocoDeCor.swift; sourceTree = "<group>"; };
 		0B634B30282EE0DB00A9C166 /* button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = button.swift; sourceTree = "<group>"; };
+		933BC662282EDAE500291AFC /* colorPickerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = colorPickerComponent.swift; sourceTree = "<group>"; };
 		0B95D38128380B7800445D7B /* quadradinhoDeCor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = quadradinhoDeCor.swift; sourceTree = "<group>"; };
 		933BC662282EDAE500291AFC /* colorPickerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = colorPickerComponent.swift; sourceTree = "<group>"; };
 		93A3D0CF283813FB0096DB41 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		93EBFF5F2836BE3F00C53089 /* skateSlider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = skateSlider.swift; sourceTree = "<group>"; };
 		C7476FAC282EDA3900185AE3 /* dashComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = dashComponent.swift; sourceTree = "<group>"; };
 		C7476FAE282EE3A400185AE3 /* saveButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = saveButton.swift; sourceTree = "<group>"; };
+		C7FFC19B2836BB1B0037C62F /* AddPatternButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPatternButton.swift; sourceTree = "<group>"; };
+		C7FFC19D2836BEEB0037C62F /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
+		C7FFC1A32836DDC00037C62F /* Util+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Util+View.swift"; sourceTree = "<group>"; };
 		E5427322282D8F6E009A0CC1 /* steez.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = steez.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5427325282D8F6E009A0CC1 /* steezApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = steezApp.swift; sourceTree = "<group>"; };
 		E5427327282D8F6E009A0CC1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -44,6 +54,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				933BC666282EE13800291AFC /* ColorPickerRing in Frameworks */,
+				C7FFC1A12836C3060037C62F /* BottomSheet in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -54,11 +65,13 @@
 			isa = PBXGroup;
 			children = (
 				0B634B2E282ED98900A9C166 /* blocoDeCor.swift */,
+				C7FFC19B2836BB1B0037C62F /* AddPatternButton.swift */,
 				0B95D38128380B7800445D7B /* quadradinhoDeCor.swift */,
 				0B634B30282EE0DB00A9C166 /* button.swift */,
 				C7476FAC282EDA3900185AE3 /* dashComponent.swift */,
 				C7476FAE282EE3A400185AE3 /* saveButton.swift */,
 				933BC662282EDAE500291AFC /* colorPickerComponent.swift */,
+				C7FFC19D2836BEEB0037C62F /* ModalView.swift */,
 				93EBFF5F2836BE3F00C53089 /* skateSlider.swift */,
 			);
 			path = Components;
@@ -71,10 +84,19 @@
 			path = "Design System";
 			sourceTree = "<group>";
 		};
+		C7FFC1A22836DD750037C62F /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				C7FFC1A32836DDC00037C62F /* Util+View.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 		E5427319282D8F6E009A0CC1 = {
 			isa = PBXGroup;
 			children = (
 				0B634B2D282ED61A00A9C166 /* Design System */,
+				C7FFC1A22836DD750037C62F /* Extensions */,
 				0B634B2C282ED5A500A9C166 /* Components */,
 				E5427324282D8F6E009A0CC1 /* steez */,
 				E5427323282D8F6E009A0CC1 /* Products */,
@@ -127,6 +149,7 @@
 			name = steez;
 			packageProductDependencies = (
 				933BC665282EE13800291AFC /* ColorPickerRing */,
+				C7FFC1A02836C3060037C62F /* BottomSheet */,
 			);
 			productName = steez;
 			productReference = E5427322282D8F6E009A0CC1 /* steez.app */;
@@ -158,6 +181,7 @@
 			mainGroup = E5427319282D8F6E009A0CC1;
 			packageReferences = (
 				933BC664282EE13800291AFC /* XCRemoteSwiftPackageReference "ColorPicker" */,
+				C7FFC19F2836C3060037C62F /* XCRemoteSwiftPackageReference "BottomSheet" */,
 			);
 			productRefGroup = E5427323282D8F6E009A0CC1 /* Products */;
 			projectDirPath = "";
@@ -190,7 +214,10 @@
 				E5427328282D8F6E009A0CC1 /* ContentView.swift in Sources */,
 				93A3D0D0283813FB0096DB41 /* HomeView.swift in Sources */,
 				C7476FAF282EE3A400185AE3 /* saveButton.swift in Sources */,
+				C7FFC19C2836BB1B0037C62F /* AddPatternButton.swift in Sources */,
 				E5427326282D8F6E009A0CC1 /* steezApp.swift in Sources */,
+				C7FFC1A42836DDC00037C62F /* Util+View.swift in Sources */,
+				C7FFC19E2836BEEB0037C62F /* ModalView.swift in Sources */,
 				0B634B2F282ED98900A9C166 /* blocoDeCor.swift in Sources */,
 				0B95D38228380B7800445D7B /* quadradinhoDeCor.swift in Sources */,
 				0B634B31282EE0DB00A9C166 /* button.swift in Sources */,
@@ -407,6 +434,14 @@
 				minimumVersion = 2.0.0;
 			};
 		};
+		C7FFC19F2836C3060037C62F /* XCRemoteSwiftPackageReference "BottomSheet" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/lucaszischka/BottomSheet";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 2.0.0;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -414,6 +449,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 933BC664282EE13800291AFC /* XCRemoteSwiftPackageReference "ColorPicker" */;
 			productName = ColorPickerRing;
+		};
+		C7FFC1A02836C3060037C62F /* BottomSheet */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = C7FFC19F2836C3060037C62F /* XCRemoteSwiftPackageReference "BottomSheet" */;
+			productName = BottomSheet;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
