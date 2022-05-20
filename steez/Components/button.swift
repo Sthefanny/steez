@@ -19,7 +19,7 @@ struct button1: View {
                  .frame(width: 114, height: 34, alignment: .center)
                  .foregroundColor(.gray)
              
-           Text ("VELOCIDADE")
+           Text ("IMPULSO")
                 .fontWeight(.bold)
                 .foregroundColor(.white)
                 .font(.system(size: 12))
