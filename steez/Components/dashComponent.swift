@@ -16,19 +16,16 @@ struct dashComponent: View {
                 ZStack{
             RoundedRectangle(cornerRadius: 5)
                 .strokeBorder(style: StrokeStyle(lineWidth: 0.75, dash: [8]))
-                .frame(width: 98, height: 74, alignment: .center)
-                .foregroundColor(.black)
+                .frame(width: 55, height: 40, alignment: .center)
+                .foregroundColor(.white)
                 .padding(.bottom, 5)
                 
             Image(systemName: "plus")
-                        .font(.system(size: 20))
-                        .foregroundColor(.black)
+                        .font(.system(size: 15))
+                        .foregroundColor(.white)
 
                 }
-            Text("Adicione a cor")
-                    .font(.system(size: 12))
-                    .frame(width: 98, alignment: .leading)
-                    .foregroundColor(.black)
+            
 
         }
         }
