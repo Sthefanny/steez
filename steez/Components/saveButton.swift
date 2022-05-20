@@ -14,11 +14,11 @@ struct saveButton: View {
         }) {
             ZStack{
             RoundedRectangle(cornerRadius: 24)
-                .frame(width: 80, height: 32, alignment: .center)
-                .foregroundColor(.black)
+                .frame(width: 90, height: 42, alignment: .center)
+                .foregroundColor(.white)
             Text("Salvar")
-                    .font(.system(size: 12))
-                    .foregroundColor(.white)
+                    .font(.system(size: 14))
+                    .foregroundColor(.black)
                     
         }
         }
