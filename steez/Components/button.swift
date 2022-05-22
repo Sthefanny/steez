@@ -8,6 +8,11 @@
 import SwiftUI
 
 struct button1: View {
+    
+    var title: String
+    var showBackgroundColor: Bool
+    var changeColorTitle: Bool
+    
     var body: some View {
       
         Button(action: {
@@ -17,11 +22,11 @@ struct button1: View {
          ZStack{
            RoundedRectangle (cornerRadius: 20)
                  .frame(width: 114, height: 34, alignment: .center)
-                 .foregroundColor(.gray)
+                 .foregroundColor(showBackgroundColor ? .gray : .clear)
              
-           Text ("IMPULSO")
+           Text (title)
                 .fontWeight(.bold)
-                .foregroundColor(.white)
+                .foregroundColor(changeColorTitle ? .white : .gray)
                 .font(.system(size: 12))
                 
             }
@@ -31,6 +36,6 @@ struct button1: View {
 
 struct button1_Previews: PreviewProvider {
     static var previews: some View {
-        button1()
+        button1(title: "IMPULSO", showBackgroundColor: true, changeColorTitle: true)
     }
 }
