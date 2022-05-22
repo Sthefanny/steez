@@ -9,21 +9,44 @@ import SwiftUI
 
 struct skateSlider: View {
     
+    @ObservedObject var bleManager = BLEManager()
     @State var goToHome = false
+    @State var showLoading = false
+    
+    
+    
+    @ViewBuilder
+    var listView: some View {
+        if bleManager.peripherals.isEmpty {
+            Button(action: {
+                bleManager.startScanning()
+            }) {
+                Text("Start scanning")
+            }
+        } else {
+            homeView
+        }
+    }
+    
+    @ViewBuilder
+    var homeView: some View {
+        if goToHome {
+            HomeView()
+        } else {
+            OnBoardScreen()
+        }
+    }
     
     var body: some View {
         
         ZStack {
+            listView
+        }
+        .onAppear() {
             
-            if goToHome {
-                Text("HomeScreen")
-                    .foregroundColor(Color.white)
-            }
-            else {
-                OnBoardScreen()
-            }
         }
         .onReceive(NotificationCenter.default.publisher(for: Notification.Name("Success")), perform: { _ in
+            bleManager.sendColors([UIColor.green, UIColor.red, UIColor.cyan, UIColor.brown, UIColor.yellow])
             withAnimation{self.goToHome = true}
         })
     }
