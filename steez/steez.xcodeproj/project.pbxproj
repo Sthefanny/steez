@@ -9,8 +9,6 @@
 /* Begin PBXBuildFile section */
 		0B634B2F282ED98900A9C166 /* blocoDeCor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B634B2E282ED98900A9C166 /* blocoDeCor.swift */; };
 		0B634B31282EE0DB00A9C166 /* button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B634B30282EE0DB00A9C166 /* button.swift */; };
-		933BC663282EDAE500291AFC /* colorPickerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933BC662282EDAE500291AFC /* colorPickerComponent.swift */; };
-		933BC666282EE13800291AFC /* ColorPickerRing in Frameworks */ = {isa = PBXBuildFile; productRef = 933BC665282EE13800291AFC /* ColorPickerRing */; };
 		0B95D38228380B7800445D7B /* quadradinhoDeCor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B95D38128380B7800445D7B /* quadradinhoDeCor.swift */; };
 		933BC663282EDAE500291AFC /* colorPickerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933BC662282EDAE500291AFC /* colorPickerComponent.swift */; };
 		933BC666282EE13800291AFC /* ColorPickerRing in Frameworks */ = {isa = PBXBuildFile; productRef = 933BC665282EE13800291AFC /* ColorPickerRing */; };
@@ -26,12 +24,20 @@
 		E5427328282D8F6E009A0CC1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5427327282D8F6E009A0CC1 /* ContentView.swift */; };
 		E542732A282D8F73009A0CC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5427329282D8F73009A0CC1 /* Assets.xcassets */; };
 		E542732D282D8F73009A0CC1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E542732C282D8F73009A0CC1 /* Preview Assets.xcassets */; };
+		E5E8774D283A87FC00E87E66 /* BLEManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E8774C283A87FC00E87E66 /* BLEManager.swift */; };
+		E5E8774F283A88D900E87E66 /* ConnectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E8774E283A88D900E87E66 /* ConnectionView.swift */; };
+		E5E87751283A980000E87E66 /* PatternListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E87750283A980000E87E66 /* PatternListView.swift */; };
+		E5E87756283AA64600E87E66 /* HalfSheet.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E87755283AA64600E87E66 /* HalfSheet.swift */; };
+		E5E87758283AA69F00E87E66 /* HalfSheetController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E87757283AA69F00E87E66 /* HalfSheetController.swift */; };
+		E5E8775A283AAB3800E87E66 /* UserData.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E87759283AAB3800E87E66 /* UserData.swift */; };
+		E5E8775D283AABBD00E87E66 /* PatternModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E8775C283AABBD00E87E66 /* PatternModel.swift */; };
+		E5E87761283ACA9700E87E66 /* CodableColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E87760283ACA9700E87E66 /* CodableColor.swift */; };
+		E5E87763283ACC4900E87E66 /* ColorModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5E87762283ACC4900E87E66 /* ColorModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		0B634B2E282ED98900A9C166 /* blocoDeCor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = blocoDeCor.swift; sourceTree = "<group>"; };
 		0B634B30282EE0DB00A9C166 /* button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = button.swift; sourceTree = "<group>"; };
-		933BC662282EDAE500291AFC /* colorPickerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = colorPickerComponent.swift; sourceTree = "<group>"; };
 		0B95D38128380B7800445D7B /* quadradinhoDeCor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = quadradinhoDeCor.swift; sourceTree = "<group>"; };
 		933BC662282EDAE500291AFC /* colorPickerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = colorPickerComponent.swift; sourceTree = "<group>"; };
 		93A3D0CF283813FB0096DB41 /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
@@ -46,6 +52,15 @@
 		E5427327282D8F6E009A0CC1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		E5427329282D8F73009A0CC1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		E542732C282D8F73009A0CC1 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		E5E8774C283A87FC00E87E66 /* BLEManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BLEManager.swift; sourceTree = "<group>"; };
+		E5E8774E283A88D900E87E66 /* ConnectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConnectionView.swift; sourceTree = "<group>"; };
+		E5E87750283A980000E87E66 /* PatternListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternListView.swift; sourceTree = "<group>"; };
+		E5E87755283AA64600E87E66 /* HalfSheet.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfSheet.swift; sourceTree = "<group>"; };
+		E5E87757283AA69F00E87E66 /* HalfSheetController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HalfSheetController.swift; sourceTree = "<group>"; };
+		E5E87759283AAB3800E87E66 /* UserData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserData.swift; sourceTree = "<group>"; };
+		E5E8775C283AABBD00E87E66 /* PatternModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PatternModel.swift; sourceTree = "<group>"; };
+		E5E87760283ACA9700E87E66 /* CodableColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CodableColor.swift; sourceTree = "<group>"; };
+		E5E87762283ACC4900E87E66 /* ColorModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -73,6 +88,10 @@
 				933BC662282EDAE500291AFC /* colorPickerComponent.swift */,
 				C7FFC19D2836BEEB0037C62F /* ModalView.swift */,
 				93EBFF5F2836BE3F00C53089 /* skateSlider.swift */,
+				E5E87750283A980000E87E66 /* PatternListView.swift */,
+				E5E87755283AA64600E87E66 /* HalfSheet.swift */,
+				E5E87757283AA69F00E87E66 /* HalfSheetController.swift */,
+				E5E87760283ACA9700E87E66 /* CodableColor.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -95,6 +114,7 @@
 		E5427319282D8F6E009A0CC1 = {
 			isa = PBXGroup;
 			children = (
+				E5E8775B283AABAC00E87E66 /* Models */,
 				0B634B2D282ED61A00A9C166 /* Design System */,
 				C7FFC1A22836DD750037C62F /* Extensions */,
 				0B634B2C282ED5A500A9C166 /* Components */,
@@ -117,8 +137,11 @@
 				E5427325282D8F6E009A0CC1 /* steezApp.swift */,
 				E5427327282D8F6E009A0CC1 /* ContentView.swift */,
 				93A3D0CF283813FB0096DB41 /* HomeView.swift */,
+				E5E8774E283A88D900E87E66 /* ConnectionView.swift */,
+				E5E8774C283A87FC00E87E66 /* BLEManager.swift */,
 				E5427329282D8F73009A0CC1 /* Assets.xcassets */,
 				E542732B282D8F73009A0CC1 /* Preview Content */,
+				E5E87759283AAB3800E87E66 /* UserData.swift */,
 			);
 			path = steez;
 			sourceTree = "<group>";
@@ -129,6 +152,15 @@
 				E542732C282D8F73009A0CC1 /* Preview Assets.xcassets */,
 			);
 			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		E5E8775B283AABAC00E87E66 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				E5E8775C283AABBD00E87E66 /* PatternModel.swift */,
+				E5E87762283ACC4900E87E66 /* ColorModel.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -210,17 +242,26 @@
 			buildActionMask = 2147483647;
 			files = (
 				C7476FAD282EDA3900185AE3 /* dashComponent.swift in Sources */,
+				E5E8774F283A88D900E87E66 /* ConnectionView.swift in Sources */,
 				933BC663282EDAE500291AFC /* colorPickerComponent.swift in Sources */,
+				E5E8775A283AAB3800E87E66 /* UserData.swift in Sources */,
+				E5E87756283AA64600E87E66 /* HalfSheet.swift in Sources */,
 				E5427328282D8F6E009A0CC1 /* ContentView.swift in Sources */,
 				93A3D0D0283813FB0096DB41 /* HomeView.swift in Sources */,
+				E5E87751283A980000E87E66 /* PatternListView.swift in Sources */,
+				E5E8775D283AABBD00E87E66 /* PatternModel.swift in Sources */,
+				E5E87763283ACC4900E87E66 /* ColorModel.swift in Sources */,
 				C7476FAF282EE3A400185AE3 /* saveButton.swift in Sources */,
 				C7FFC19C2836BB1B0037C62F /* AddPatternButton.swift in Sources */,
 				E5427326282D8F6E009A0CC1 /* steezApp.swift in Sources */,
 				C7FFC1A42836DDC00037C62F /* Util+View.swift in Sources */,
 				C7FFC19E2836BEEB0037C62F /* ModalView.swift in Sources */,
+				E5E8774D283A87FC00E87E66 /* BLEManager.swift in Sources */,
 				0B634B2F282ED98900A9C166 /* blocoDeCor.swift in Sources */,
 				0B95D38228380B7800445D7B /* quadradinhoDeCor.swift in Sources */,
+				E5E87761283ACA9700E87E66 /* CodableColor.swift in Sources */,
 				0B634B31282EE0DB00A9C166 /* button.swift in Sources */,
+				E5E87758283AA69F00E87E66 /* HalfSheetController.swift in Sources */,
 				93EBFF602836BE3F00C53089 /* skateSlider.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -350,9 +391,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"steez/Preview Content\"";
-				DEVELOPMENT_TEAM = JY8DAFPMDT;
+				DEVELOPMENT_TEAM = H7R4J57657;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Necessário para conexão Bluetooth";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -380,9 +422,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"steez/Preview Content\"";
-				DEVELOPMENT_TEAM = JY8DAFPMDT;
+				DEVELOPMENT_TEAM = H7R4J57657;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Necessário para conexão Bluetooth";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;

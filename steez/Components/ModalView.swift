@@ -6,64 +6,88 @@
 //
 import SwiftUI
 import BottomSheet
+import ColorPickerRing
 
 //The custom BottomSheetPosition enum with absolute values.
-enum BookBottomSheetPosition: CGFloat, CaseIterable {
-    case middle = 601, bottom = 125, hidden = 0
+enum ModalColorBottomSheetPosition: CGFloat, CaseIterable {
+    case middle = 600, bottom = 125, hidden = 0
 }
 
-struct BookDetailView: View {
-    @State private var name: String = ""
-    @State var bottomSheetPosition: BookBottomSheetPosition = .middle
-    @Binding var test: UIColor
-    @State var quadradinhoCliked: Int
+struct ModalView: View {
     
-    let backgroundColors: [Color] = [Color(red: 0.1, green: 0.1, blue: 0.1)]
+    @ObservedObject var bleManager = BLEManager()
+    
+    @State private var name: String = ""
+    @State private var quadradinhoClicked: Int?
+    @State private var bottomSheetPosition: ModalColorBottomSheetPosition = .middle
+    @State private var colorPicked = UIColor.red
+    @State private var lastIndex = 0
+    
+    @Binding var pattern: PatternModel
+    
+    let backgroundColors: [Color] = [Color.clear]
     
     var body: some View {
-        LinearGradient(gradient: Gradient(colors: self.backgroundColors), startPoint: .topLeading, endPoint: .bottomTrailing)
-            .edgesIgnoringSafeArea(.all)
-            .bottomSheet(bottomSheetPosition: self.$bottomSheetPosition, options: [.noDragIndicator, .allowContentDrag, .swipeToDismiss, .tapToDismiss, .absolutePositionValue, .background({ AnyView(Color("cinzaEscuro")) })], headerContent: {
-            }) {
-            
-                
-                VStack(alignment: .center, spacing: 0) {
-                TextField("", text: $name)
-                        .placeholder(when: name.isEmpty) {
-                            Text("Nome do seu padrão")
-                                .foregroundColor(.white.opacity(0.5))
-                        }
-                        .multilineTextAlignment(.center)
-                        .font(.system(size: 26, weight: .bold))
-                        .padding(.bottom, 40)
-                        .foregroundColor(.white)
-                   
-                    colorPickerComponent(color: test)
-                        .padding(.bottom, 40)
-                    
-                    HStack{
-                    dashComponent()
-                    ForEach (1..<6) { i in
-                        quadradinhoDeCor(isCliked: quadradinhoCliked == i, color: quadradinhoCliked == i ? UIColor.green : UIColor.black)
-                            .padding(.horizontal, 5)
-                            .onTapGesture {
-                                quadradinhoCliked = i
-                            }
-                                            }
-                    }
-                    
-                    saveButton()
-                    .padding(.top, 30)
-                    
-                    Spacer(minLength: 0)
+        VStack(alignment: .center, spacing: 0) {
+            TextField("", text: $name)
+                .placeholder(when: name.isEmpty) {
+                    Text(pattern.name)
+                        .foregroundColor(.white.opacity(0.5))
                 }
-                .padding(.top)
+                .multilineTextAlignment(.center)
+                .font(.system(size: 26, weight: .bold))
+                .padding(.bottom, 40)
+                .foregroundColor(.white)
+            
+            
+            ZStack {
+                ColorPickerRing(color: $colorPicked, strokeWidth: 30)
+                    .frame(width: 140, height: 140, alignment: .center)
+                Circle()
+                    .frame(width: 80, height: 80, alignment: .center)
+                    .foregroundColor(Color(colorPicked))
+                
             }
+            .padding(.bottom, 40)
+            
+            HStack{
+                if pattern.colors.count < 5 {
+                    dashComponent()
+                }
+                
+                ForEach (0..<pattern.colors.count) { i in
+                    quadradinhoDeCor(isClicked: .constant(quadradinhoClicked == i), isClickable: true, color: quadradinhoClicked == i ? $colorPicked : $pattern.colors[i].color, clickedBorderColor: UIColor.white, action: {
+                        quadradinhoClicked = i
+                        pattern.colors[lastIndex].color = colorPicked
+                        lastIndex = i
+                    })
+                    .padding(.horizontal, 5)
+                }
+            }
+            
+            saveButton(action: savePattern)
+                .padding(.top, 30)
+            
+            Spacer(minLength: 0)
+        }
+        .ignoresSafeArea()
+        .padding(.top)
+        .background(Color("cinzaescuro"))
+    }
+    
+    func savePattern() -> Void {
+        UserData().addPattern(id: pattern.id, value: pattern)
+        
+        let colors = pattern.colors.map{
+            $0.color
+        }
+        
+        bleManager.sendColors(colors)
     }
 }
 
 struct ModalView_Previews: PreviewProvider {
     static var previews: some View {
-        BookDetailView(test: .constant(UIColor.red), quadradinhoCliked: 0)
+        ModalView(pattern: .constant(PatternModel(id: 0, name: "default", isActive: true, colors: [ColorModel(color: UIColor.red), ColorModel(color: UIColor.green), ColorModel(color: UIColor.blue)])))
     }
 }

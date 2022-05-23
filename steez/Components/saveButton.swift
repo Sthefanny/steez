@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct saveButton: View {
+    
+    @State var action: () -> Void
+    
     var body: some View {
         Button(action: {
-            // What to perform
+            action()
         }) {
             ZStack{
             RoundedRectangle(cornerRadius: 24)
@@ -27,6 +30,6 @@ struct saveButton: View {
 
 struct saveButton_Previews: PreviewProvider {
     static var previews: some View {
-        saveButton()
+        saveButton(action: {})
     }
 }

@@ -9,21 +9,51 @@ import SwiftUI
 
 struct skateSlider: View {
     
+    @ObservedObject var bleManager = BLEManager()
     @State var goToHome = false
+    @State var showLoading = false
+    
+    
+    
+    @ViewBuilder
+    var listView: some View {
+        if bleManager.peripherals.isEmpty {
+            Button(action: {
+                bleManager.startScanning()
+            }) {
+                Text("Start scanning")
+            }
+        } else {
+            homeView
+        }
+    }
+    
+    @ViewBuilder
+    var homeView: some View {
+        if goToHome {
+            HomeView()
+        } else {
+            OnBoardScreen()
+        }
+    }
     
     var body: some View {
         
         ZStack {
+            listView
+        }
+        .onAppear() {
             
-            if goToHome {
-                Text("HomeScreen")
-                    .foregroundColor(Color.white)
-            }
-            else {
-                OnBoardScreen()
-            }
         }
         .onReceive(NotificationCenter.default.publisher(for: Notification.Name("Success")), perform: { _ in
+            UserData().reset()
+            let activePattern = UserData().getActivePattern()
+            if (activePattern != nil) {
+                let colors = activePattern!.colors.map{
+                    $0.color
+                }
+                bleManager.sendColors(colors)
+            }
             withAnimation{self.goToHome = true}
         })
     }
@@ -54,26 +84,26 @@ struct OnBoardScreen: View {
                 .foregroundColor(Color("cinzaescuro"))
                 .padding(.leading,100)
             
-                
+            
             HStack {
                 
                 ZStack (alignment: .leading){
                     
-                Rectangle()
-                    .fill(Color("cinzaescuro"))
-                    .frame(width: calculateWidth() + 115)
-                    .cornerRadius(50)
+                    Rectangle()
+                        .fill(Color("cinzaescuro"))
+                        .frame(width: calculateWidth() + 115)
+                        .cornerRadius(50)
                     
                     VStack (alignment: .leading){
-                    Image(systemName: "circle.fill")
-                        .resizable()
-                           .frame(width: 5, height: 5)
-                           .foregroundColor(.white)
-                    
-                    Image(systemName: "circle.fill")
-                        .resizable()
-                           .frame(width: 5, height: 5)
-                           .foregroundColor(.white)
+                        Image(systemName: "circle.fill")
+                            .resizable()
+                            .frame(width: 5, height: 5)
+                            .foregroundColor(.white)
+                        
+                        Image(systemName: "circle.fill")
+                            .resizable()
+                            .frame(width: 5, height: 5)
+                            .foregroundColor(.white)
                     }
                     .padding(20)
                 }
@@ -84,26 +114,26 @@ struct OnBoardScreen: View {
             HStack {
                 
                 HStack (alignment: .center, spacing: 40){
-                
-                VStack {
-                    Image(systemName: "circle.fill")
-                        .resizable()
-                           .frame(width: 5, height: 5)
                     
-                    Image(systemName: "circle.fill")
-                        .resizable()
-                           .frame(width: 5, height: 5)
-                }
-                
-                VStack {
-                    Image(systemName: "circle.fill")
-                        .resizable()
-                           .frame(width: 5, height: 5)
+                    VStack {
+                        Image(systemName: "circle.fill")
+                            .resizable()
+                            .frame(width: 5, height: 5)
+                        
+                        Image(systemName: "circle.fill")
+                            .resizable()
+                            .frame(width: 5, height: 5)
+                    }
                     
-                    Image(systemName: "circle.fill")
-                        .resizable()
-                           .frame(width: 5, height: 5)
-                }
+                    VStack {
+                        Image(systemName: "circle.fill")
+                            .resizable()
+                            .frame(width: 5, height: 5)
+                        
+                        Image(systemName: "circle.fill")
+                            .resizable()
+                            .frame(width: 5, height: 5)
+                    }
                 }
                 
                 .foregroundColor(.white)
@@ -152,18 +182,18 @@ struct OnBoardScreen: View {
 
 struct pontinhosSkate: View {
     
-//    @State var goToHome = false
+    //    @State var goToHome = false
     
     var body: some View {
         
         VStack {
             Image(systemName: "circle.fill")
                 .resizable()
-                   .frame(width: 5, height: 5)
+                .frame(width: 5, height: 5)
             
             Image(systemName: "circle.fill")
                 .resizable()
-                   .frame(width: 5, height: 5)
+                .frame(width: 5, height: 5)
         }
     }
 }

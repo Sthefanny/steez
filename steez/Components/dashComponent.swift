@@ -14,20 +14,20 @@ struct dashComponent: View {
         }) {
             VStack{
                 ZStack{
-            RoundedRectangle(cornerRadius: 5)
-                .strokeBorder(style: StrokeStyle(lineWidth: 0.75, dash: [8]))
-                .frame(width: 55, height: 40, alignment: .center)
-                .foregroundColor(.white)
-                .padding(.bottom, 5)
-                
-            Image(systemName: "plus")
+                    RoundedRectangle(cornerRadius: 5)
+                        .strokeBorder(style: StrokeStyle(lineWidth: 0.75, dash: [8]))
+                        .frame(width: 55, height: 45, alignment: .center)
+                        .foregroundColor(.gray)
+                        .padding(.trailing, 2)
+                    
+                    Image(systemName: "plus")
                         .font(.system(size: 15))
-                        .foregroundColor(.white)
-
+                        .foregroundColor(.gray)
+                        .frame(width: 55, height: 45, alignment: .center)
                 }
-            
-
-        }
+                
+                
+            }
         }
     }
 }

@@ -15,9 +15,9 @@ struct colorPickerComponent: View {
     var body: some View {
         ZStack {
             ColorPickerRing(color: $color, strokeWidth: 30)
-                .frame(width: 300, height: 300, alignment: .center)
+                .frame(width: 140, height: 140, alignment: .center)
             Circle()
-                .frame(width: 120, height: 120, alignment: .center)
+                .frame(width: 80, height: 80, alignment: .center)
                 .foregroundColor(Color(color))
         }
     }

@@ -50,7 +50,7 @@ struct HomeView: View {
                 .padding(.bottom, 36)
                 
                     VStack(alignment: .center){
-                        blocoDeCor(selectedPattern: true)
+                        PatternListView()
                 }
             }
         }
