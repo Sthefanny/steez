@@ -8,25 +8,9 @@
 import SwiftUI
 
 struct skateSlider: View {
-    
     @ObservedObject var bleManager = BLEManager()
     @State var goToHome = false
     @State var showLoading = false
-    
-    
-    
-    @ViewBuilder
-    var listView: some View {
-        if bleManager.peripherals.isEmpty {
-            Button(action: {
-                bleManager.startScanning()
-            }) {
-                Text("Start scanning")
-            }
-        } else {
-            homeView
-        }
-    }
     
     @ViewBuilder
     var homeView: some View {
@@ -37,25 +21,52 @@ struct skateSlider: View {
         }
     }
     
+    @ViewBuilder
+    var loadingView: some View {
+        if showLoading {
+            LoaderView(progressViewScaleSize: 3.0, title: "Conectando Dispositivo")
+        }
+    }
+    
     var body: some View {
-        
         ZStack {
-            listView
+            homeView
+            loadingView
         }
         .onAppear() {
             
         }
         .onReceive(NotificationCenter.default.publisher(for: Notification.Name("Success")), perform: { _ in
 //            UserData().reset()
-            let activePattern = UserData().getActivePattern()
-            if (activePattern != nil) {
-                let colors = activePattern!.colors.map{
-                    $0.color
+            bleManager.startScanning()
+            withAnimation{self.showLoading = true}
+            bleManager.deviceConnected = {
+                withAnimation{self.showLoading = false}
+                let activePattern = UserData().getActivePattern()
+                if (activePattern != nil) {
+                    let colors = activePattern!.colors.map{
+                        $0.color
+                    }
+                    bleManager.sendColors(colors)
                 }
-                bleManager.sendColors(colors)
+                withAnimation{self.goToHome = true}
             }
-            withAnimation{self.goToHome = true}
         })
+        .alert("Dispositivo não encontrado", isPresented: $bleManager.presentDeviceNotFoundAlert, actions: {
+            Button("Ok", role: .cancel) {
+                withAnimation{self.showLoading = false}
+            }
+        }, message: {
+            Text("Não foi possível encontrar o dispositivo.\nReinicie-o e tente novamente")
+        })
+        .alert("Acesso ao Bluetooth não autorizado", isPresented: $bleManager.bluetoothDenied, actions: {
+            Button("Abrir configurações", role: .cancel) {
+                UIApplication.shared.open(URL.init(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
+            }
+        }, message: {
+            Text("É preciso permitir a utilização do Bluetooth para utilizar o dispositivo.\nAcesse as configurações para autorizar.")
+        })
+
     }
 }
 
@@ -67,135 +78,3 @@ struct skateSlider_Previews: PreviewProvider {
         }
     }
 }
-
-struct OnBoardScreen: View {
-    
-    @State var maxWidth = UIScreen.main.bounds.width - 100
-    @State var offset : CGFloat = 0
-    
-    
-    var body: some View {
-        ZStack {
-            Capsule()
-                .fill(Color("branco"))
-            
-            Text("Swipe to Connect")
-                .fontWeight(.regular)
-                .foregroundColor(Color("cinzaescuro"))
-                .padding(.leading,100)
-            
-            
-            HStack {
-                
-                ZStack (alignment: .leading){
-                    
-                    Rectangle()
-                        .fill(Color("cinzaescuro"))
-                        .frame(width: calculateWidth() + 115)
-                        .cornerRadius(50)
-                    
-                    VStack (alignment: .leading){
-                        Image(systemName: "circle.fill")
-                            .resizable()
-                            .frame(width: 5, height: 5)
-                            .foregroundColor(.white)
-                        
-                        Image(systemName: "circle.fill")
-                            .resizable()
-                            .frame(width: 5, height: 5)
-                            .foregroundColor(.white)
-                    }
-                    .padding(20)
-                }
-                
-                Spacer(minLength: 0)
-            }
-            
-            HStack {
-                
-                HStack (alignment: .center, spacing: 40){
-                    
-                    VStack {
-                        Image(systemName: "circle.fill")
-                            .resizable()
-                            .frame(width: 5, height: 5)
-                        
-                        Image(systemName: "circle.fill")
-                            .resizable()
-                            .frame(width: 5, height: 5)
-                    }
-                    
-                    VStack {
-                        Image(systemName: "circle.fill")
-                            .resizable()
-                            .frame(width: 5, height: 5)
-                        
-                        Image(systemName: "circle.fill")
-                            .resizable()
-                            .frame(width: 5, height: 5)
-                    }
-                }
-                
-                .foregroundColor(.white)
-                .offset(x:5)
-                .frame(width: 115, height: 60)
-                .background(Color("cinzaescuro"))
-                .clipShape(Rectangle())
-                .cornerRadius(50)
-                .offset(x: offset)
-                .gesture(DragGesture().onChanged(onChanged(value:)).onEnded(onEnd(value:)))
-                
-                Spacer()
-            }
-        }
-        .frame(width: maxWidth, height: 60)
-    }
-    
-    func calculateWidth()-> CGFloat {
-        let percent = offset / maxWidth
-        return percent * maxWidth
-        
-    }
-    
-    func onChanged(value: DragGesture.Value) {
-        if value.translation.width > 0 && offset <= maxWidth - 115 {
-            offset = value.translation.width
-        }
-    }
-    
-    func onEnd(value: DragGesture.Value) {
-        
-        withAnimation(Animation.easeOut(duration: 0.3)) {
-            if offset > 180 {
-                offset = maxWidth - 110
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
-                    NotificationCenter.default.post(name: NSNotification.Name("Success"), object: nil)
-                }
-            }
-            else {
-                offset = 0
-            }
-        }
-    }
-}
-
-struct pontinhosSkate: View {
-    
-    //    @State var goToHome = false
-    
-    var body: some View {
-        
-        VStack {
-            Image(systemName: "circle.fill")
-                .resizable()
-                .frame(width: 5, height: 5)
-            
-            Image(systemName: "circle.fill")
-                .resizable()
-                .frame(width: 5, height: 5)
-        }
-    }
-}
-
-
