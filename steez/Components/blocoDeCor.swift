@@ -9,6 +9,8 @@ import SwiftUI
 
 struct blocoDeCor: View {
     
+    @ObservedObject var bleManager: BLEManager
+    
     var selectedPattern: Bool
     let screenSize = UIScreen.main.bounds.size
     @State private var showingSheet = false
@@ -46,7 +48,7 @@ struct blocoDeCor: View {
         }
         .sheet(isPresented: $showingSheet) {
            HalfSheet {
-               ModalView(pattern: $pattern)
+               ModalView(bleManager: bleManager, pattern: $pattern)
                    .ignoresSafeArea()
            }
         }
@@ -76,6 +78,6 @@ struct blocoDeCor: View {
 
 struct blocoDeCor_Previews: PreviewProvider {
     static var previews: some View {
-        blocoDeCor(selectedPattern: true, pattern: PatternModel(id: 0, name: "default", isActive: true, colors: [ColorModel(color: UIColor.red), ColorModel(color: UIColor.green), ColorModel(color: UIColor.blue)]))
+        blocoDeCor(bleManager: BLEManager(), selectedPattern: true, pattern: PatternModel(id: 0, name: "default", isActive: true, colors: [ColorModel(color: UIColor.red), ColorModel(color: UIColor.green), ColorModel(color: UIColor.blue)]))
     }
 }

@@ -43,12 +43,16 @@ class UserData {
     
     func addPattern(id: Int, value: PatternModel) {
         var patterns = [PatternModel]()
-        var pattern = getPatternById(id: id)
+        let pattern = getPatternById(id: id)
         
         if pattern == nil {
             patterns.append(value)
         } else {
-            pattern = value
+            patterns.removeAll(where: { savedPatterns in
+                savedPatterns.id == id
+            })
+            
+            patterns.append(value)
         }
         
         do {

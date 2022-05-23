@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct HomeView: View {
+    
+    @ObservedObject var bleManager: BLEManager
+    
     var body: some View {
         ZStack {
             Color("background")
@@ -50,7 +53,7 @@ struct HomeView: View {
                 .padding(.bottom, 36)
                 
                     VStack(alignment: .center){
-                        PatternListView()
+                        PatternListView(bleManager: bleManager)
                 }
             }
         }
@@ -59,6 +62,6 @@ struct HomeView: View {
 
 struct HomeView_Previews: PreviewProvider {
     static var previews: some View {
-        HomeView()
+        HomeView(bleManager: BLEManager())
     }
 }

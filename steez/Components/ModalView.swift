@@ -15,7 +15,7 @@ enum ModalColorBottomSheetPosition: CGFloat, CaseIterable {
 
 struct ModalView: View {
     
-    @ObservedObject var bleManager = BLEManager()
+    @ObservedObject var bleManager: BLEManager
     
     @State private var name: String = ""
     @State private var quadradinhoClicked: Int?
@@ -88,6 +88,6 @@ struct ModalView: View {
 
 struct ModalView_Previews: PreviewProvider {
     static var previews: some View {
-        ModalView(pattern: .constant(PatternModel(id: 0, name: "default", isActive: true, colors: [ColorModel(color: UIColor.red), ColorModel(color: UIColor.green), ColorModel(color: UIColor.blue)])))
+        ModalView(bleManager: BLEManager(), pattern: .constant(PatternModel(id: 0, name: "default", isActive: true, colors: [ColorModel(color: UIColor.red), ColorModel(color: UIColor.green), ColorModel(color: UIColor.blue)])))
     }
 }

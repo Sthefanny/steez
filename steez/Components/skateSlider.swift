@@ -31,7 +31,7 @@ struct skateSlider: View {
     @ViewBuilder
     var homeView: some View {
         if goToHome {
-            HomeView()
+            HomeView(bleManager: bleManager)
         } else {
             OnBoardScreen()
         }
@@ -46,7 +46,7 @@ struct skateSlider: View {
             
         }
         .onReceive(NotificationCenter.default.publisher(for: Notification.Name("Success")), perform: { _ in
-            UserData().reset()
+//            UserData().reset()
             let activePattern = UserData().getActivePattern()
             if (activePattern != nil) {
                 let colors = activePattern!.colors.map{

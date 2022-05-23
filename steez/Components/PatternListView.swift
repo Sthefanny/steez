@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct PatternListView: View {
+    
+    @ObservedObject var bleManager: BLEManager
     @State private var patterns: [PatternModel]?
     
     var body: some View {
@@ -17,7 +19,7 @@ struct PatternListView: View {
             } else {
                 ForEach (0..<patterns!.count) { i in
                     var pattern = patterns![i]
-                    blocoDeCor(selectedPattern: pattern.isActive, pattern: pattern)
+                    blocoDeCor(bleManager: bleManager, selectedPattern: pattern.isActive, pattern: pattern)
                 }
             }
             
@@ -32,6 +34,6 @@ struct PatternListView: View {
 
 struct PatternListView_Previews: PreviewProvider {
     static var previews: some View {
-        PatternListView()
+        PatternListView(bleManager: BLEManager())
     }
 }
