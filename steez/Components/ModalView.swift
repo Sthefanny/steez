@@ -17,15 +17,25 @@ struct ModalView: View {
     
     @ObservedObject var bleManager: BLEManager
     
+    @Environment(\.presentationMode) var presentationMode
+    
     @State private var name: String = ""
     @State private var quadradinhoClicked: Int?
     @State private var bottomSheetPosition: ModalColorBottomSheetPosition = .middle
     @State private var colorPicked = UIColor.red
     @State private var lastIndex = 0
+    @State private var showLoading = false
     
     @Binding var pattern: PatternModel
     
     let backgroundColors: [Color] = [Color.clear]
+    
+    @ViewBuilder
+    var loadingView: some View {
+        if showLoading {
+            LoaderView(progressViewScaleSize: 3.0, title: "Conectando Dispositivo")
+        }
+    }
     
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
@@ -73,6 +83,11 @@ struct ModalView: View {
         .ignoresSafeArea()
         .padding(.top)
         .background(Color("cinzaescuro"))
+        .alert(bleManager.connectionStatus.alertTitle, isPresented: $bleManager.shouldShowConnectionAlert, actions: {
+            getAlertActions()
+        }, message: {
+            Text(bleManager.connectionStatus.alertMessage)
+        })
     }
     
     func savePattern() -> Void {
@@ -83,6 +98,37 @@ struct ModalView: View {
         }
         
         bleManager.sendColors(colors)
+    }
+    
+    private func getAlertActions() -> some View {
+        switch bleManager.connectionStatus {
+        case .succes:
+            return Button("Ok", role: .cancel) { }
+        case .fail:
+            return Button("Ok", role: .cancel) { }
+        case .receiveError:
+            return Button("Enviar novamente", role: .cancel) {
+                savePattern()
+            }
+        case .didDisconnected:
+            return Button("Reconectar", role: .cancel) {
+                presentationMode.wrappedValue.dismiss()
+                withAnimation{self.showLoading = true}
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
+                    NotificationCenter.default.post(name: NSNotification.Name("Success"), object: nil)
+                }
+            }
+        case .notFound:
+            return Button("Ok", role: .cancel) {
+                withAnimation{self.showLoading = false}
+            }
+        case .notAllowed:
+            return Button("Abrir configurações", role: .cancel) {
+                UIApplication.shared.open(URL.init(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
+            }
+        case .disconnected:
+            return Button("Ok", role: .cancel) { }
+        }
     }
 }
 
