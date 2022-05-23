@@ -10,62 +10,65 @@ import SwiftUI
 struct blocoDeCor: View {
     
     var selectedPattern: Bool
+    let screenSize = UIScreen.main.bounds.size
+    @State private var showingSheet = false
+    @State private var color = UIColor.red
+    @State var pattern: PatternModel
     
     var body: some View {
-        
-        
-        
-      List{
+        ZStack(alignment: .center){
             
-            ZStack(alignment: .center){
+            RoundedRectangle(cornerRadius: 5)
+                .frame(width: screenSize.width - 40, height: 105, alignment: .center)
+                .foregroundColor(selectedPattern ? .gray : .clear)
+            
+            VStack {
+                Text ("Padrao 01")
+                    .font(.body)
+                    .fontWeight(.bold)
+                    .frame(width: screenSize.width - 40, height: 18, alignment: .topLeading)
+                    .foregroundColor(.white)
+                    .padding(.leading, 40)
+                    .padding(.bottom, 10)
                 
-                
-                RoundedRectangle(cornerRadius: 5)
-                    .frame(width: 326, height: 95)
-                    .foregroundColor(selectedPattern ? .gray : .clear)
-                
-                VStack {
-                    Text ("Padrao 01")
-                        .font(.body)
-                        .fontWeight(.bold)
-                        .frame(width: 270, height: 18, alignment: .topLeading)
-                        .foregroundColor(.white)
+                HStack {
                     
-                    HStack{
-                        
-                        ForEach (1..<6) { i in
-                            quadradinhoDeCor()
-                        }
-                        
+                    ForEach (0..<pattern.colors.count) { i in
+                        quadradinhoDeCor(isClicked: .constant(false), isClickable: true, color: $pattern.colors[i].color, action: {showingSheet = true})
                     }
-                }
-            }
-            .swipeActions (allowsFullSwipe: false) {
-                
-                Button(role: .destructive) {
-                    print("editar")
-                } label: {
-                    Label("Editar", systemImage: "square.and.pencil")
-                }
-                .tint(.indigo)
-                
-                Button(role: .destructive) {
-                    print("deletar")
-                } label: {
-                    Label("Deletar", systemImage: "trash.fill")
                     
                 }
+                .padding(.bottom, 10)
+            }
+        }
+        .onTapGesture {
+            showingSheet = true
+        }
+        .sheet(isPresented: $showingSheet) {
+           HalfSheet {
+               ModalView(pattern: $pattern)
+                   .ignoresSafeArea()
+           }
+        }
+        .swipeActions (allowsFullSwipe: false) {
+            
+            Button(role: .destructive) {
+                print("editar")
+            } label: {
+                Label("Editar", systemImage: "square.and.pencil")
+            }
+            .tint(.indigo)
+            
+            Button(role: .destructive) {
+                print("deletar")
+            } label: {
+                Label("Deletar", systemImage: "trash.fill")
                 
             }
-            .listRowBackground(Color.clear)
-            .listRowSeparator(.hidden)
+            
         }
-        .listStyle(.plain)
-        //        .listRowInsets(EdgeInsets())
-        //        .background(Color.clear)
-        .onTapGesture {
-            print("clicado")
-        }
+        .listRowBackground(Color.clear)
+        .listRowSeparator(.hidden)
         
     }
 }
@@ -73,6 +76,6 @@ struct blocoDeCor: View {
 
 struct blocoDeCor_Previews: PreviewProvider {
     static var previews: some View {
-        blocoDeCor(selectedPattern: true)
+        blocoDeCor(selectedPattern: true, pattern: PatternModel(id: 0, name: "default", isActive: true, colors: [ColorModel(color: UIColor.red), ColorModel(color: UIColor.green), ColorModel(color: UIColor.blue)]))
     }
 }

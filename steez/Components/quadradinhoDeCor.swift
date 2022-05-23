@@ -9,24 +9,32 @@ import Foundation
 import SwiftUI
 
 struct quadradinhoDeCor: View {
-    @State var isCliked = false
-    @State var color = UIColor.red
+    @Binding var isClicked: Bool
+    
+    @State var isClickable: Bool
+    @Binding var color: UIColor
+    @State var clickedBorderColor: UIColor = UIColor.red
+    @State var action: () -> Void = {}
+    
     var body: some View {
-
-    RoundedRectangle(cornerRadius: 5)
-            .stroke(isCliked ? Color.white : Color(color), lineWidth: 5)
-    .background(Color(color))
-    .frame(width: 55, height: 40, alignment: .center)
-    .padding(.trailing, -6.0)
-    .onTapGesture {
-    isCliked = !isCliked
-    }
-       
+        
+        RoundedRectangle(cornerRadius: 5)
+            .stroke(isClicked ? Color(clickedBorderColor) : Color(color), lineWidth: 5)
+            .background(Color(color))
+            .foregroundColor(Color(color))
+            .frame(width: 50, height: 40, alignment: .center)
+            .padding(.trailing, 2)
+            .onTapGesture {
+                if (isClickable) {
+                    action()
+                }
+            }
+        
     }
 }
 
-        struct quadradinhoDeCor_Previews: PreviewProvider {
-            static var previews: some View {
-                quadradinhoDeCor()
-            }
-        }
+struct quadradinhoDeCor_Previews: PreviewProvider {
+    static var previews: some View {
+        quadradinhoDeCor(isClicked: .constant(false), isClickable: true, color: .constant(UIColor.red), clickedBorderColor: UIColor.blue, action: {})
+    }
+}
