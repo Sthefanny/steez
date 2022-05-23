@@ -38,7 +38,7 @@ struct ContentView: View {
                 Spacer()
             }
             Spacer()
-            if bleManager.isSwitchedOn {
+            if bleManager.bluetoothDenied {
                 Text("Bluetooth is switched on")
                     .foregroundColor(.green)
             }

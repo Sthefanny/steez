@@ -15,8 +15,10 @@ struct Peripheral: Identifiable {
 }
 
 class BLEManager: NSObject, ObservableObject {
-    @Published var isSwitchedOn = false // Bluetooth foi permitido pelo usuário
+    @Published var bluetoothDenied = false // Bluetooth foi permitido pelo usuário
     @Published var peripherals = [Peripheral]() // Todos os devices conectados ao app
+    @Published var deviceConnected: () -> Void = {}
+    @Published var presentDeviceNotFoundAlert = false
     
     private let characteristicsUUID = CBUUID(string: "43D7CB06-EE4C-4718-BE3E-5654DB9B3795")
     private let serviceUUIDpartKey = "4775-A77B-680697671B20"
@@ -25,6 +27,7 @@ class BLEManager: NSObject, ObservableObject {
     private var inputChar: CBCharacteristic?
     private var myCentral: CBCentralManager!
     private var connectedPeripheral: CBPeripheral!
+    private var timer = Timer()
     
     override init() {
         super.init()
@@ -33,8 +36,10 @@ class BLEManager: NSObject, ObservableObject {
     }
     
     func startScanning() {
+        presentDeviceNotFoundAlert = false
+        timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: false)
         myCentral.scanForPeripherals(withServices: nil, options: nil)
-        
+
         // TODO: Início do scan, podemos colocar alguma representação visual para o usuário
     }
     
@@ -84,17 +89,24 @@ private extension BLEManager {
         }
         return nil
     }
+    
+    @objc func fireTimer() {
+        presentDeviceNotFoundAlert.toggle()
+        timer.invalidate()
+        myCentral.stopScan()
+    }
 }
 
 extension BLEManager: CBCentralManagerDelegate {
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
-        isSwitchedOn = central.state == .poweredOn ? true : false
+        bluetoothDenied = central.state == .poweredOn ? false : true
     }
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
         if let name = advertisementData[CBAdvertisementDataLocalNameKey] as? String {
             if let uuid = dataServiceUUIDtoString(advertisementData[CBAdvertisementDataServiceUUIDsKey]) {
                 if name == controllerNameConstant && uuid.contains(serviceUUIDpartKey) {
+                    timer.invalidate()
                     connectedPeripheral = peripheral
                     central.connect(peripheral)
                     central.stopScan()
@@ -106,8 +118,8 @@ extension BLEManager: CBCentralManagerDelegate {
     func centralManager(_ central: CBCentralManager, didConnect peripheral: CBPeripheral) {
         peripheral.delegate = self
         print("Connected with \(peripheral)")
-        // TODO: Device conectado, mostrar para o usuário que isso ocorreu ou prosseguir para próxima tela
         peripheral.discoverServices(nil)
+        deviceConnected()
     }
     
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
