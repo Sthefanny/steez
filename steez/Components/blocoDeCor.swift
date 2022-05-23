@@ -16,21 +16,20 @@ struct blocoDeCor: View {
     @State private var showingSheet = false
     @State private var color = UIColor.red
     @State var pattern: PatternModel
+    @State var onEdit: () -> Void
+    @State var onDelete: () -> Void
     
     var body: some View {
         ZStack(alignment: .center){
             
-            RoundedRectangle(cornerRadius: 5)
-                .frame(width: screenSize.width - 40, height: 105, alignment: .center)
-                .foregroundColor(selectedPattern ? .gray : .clear)
+            RoundedRectangle(cornerRadius: 5)                .foregroundColor(selectedPattern ? .gray : .clear)
             
             VStack {
-                Text ("Padrao 01")
+                Text (pattern.name)
                     .font(.body)
                     .fontWeight(.bold)
-                    .frame(width: screenSize.width - 40, height: 18, alignment: .topLeading)
+                    .frame(width: screenSize.width - 80, height: 18, alignment: .topLeading)
                     .foregroundColor(.white)
-                    .padding(.leading, 40)
                     .padding(.bottom, 10)
                 
                 HStack {
@@ -40,8 +39,9 @@ struct blocoDeCor: View {
                     }
                     
                 }
-                .padding(.bottom, 10)
             }
+            .padding(.top, 10)
+            .padding(.bottom, 20)
         }
         .onTapGesture {
             showingSheet = true
@@ -55,18 +55,20 @@ struct blocoDeCor: View {
         .swipeActions (allowsFullSwipe: false) {
             
             Button(role: .destructive) {
+                print("deletar")
+                onDelete()
+            } label: {
+                Label("Deletar", systemImage: "trash.fill")
+            }
+            
+            Button(role: .destructive) {
                 print("editar")
+                showingSheet = true
+                onEdit()
             } label: {
                 Label("Editar", systemImage: "square.and.pencil")
             }
             .tint(.indigo)
-            
-            Button(role: .destructive) {
-                print("deletar")
-            } label: {
-                Label("Deletar", systemImage: "trash.fill")
-                
-            }
             
         }
         .listRowBackground(Color.clear)
@@ -78,6 +80,6 @@ struct blocoDeCor: View {
 
 struct blocoDeCor_Previews: PreviewProvider {
     static var previews: some View {
-        blocoDeCor(bleManager: BLEManager(), selectedPattern: true, pattern: PatternModel(id: 0, name: "default", isActive: true, colors: [ColorModel(color: UIColor.red), ColorModel(color: UIColor.green), ColorModel(color: UIColor.blue)]))
+        blocoDeCor(bleManager: BLEManager(), selectedPattern: true, pattern: PatternModel(id: 0, name: "default", isActive: true, colors: [ColorModel(color: UIColor.red), ColorModel(color: UIColor.green), ColorModel(color: UIColor.blue)]), onEdit: {}, onDelete: {})
     }
 }

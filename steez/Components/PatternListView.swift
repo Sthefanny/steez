@@ -9,26 +9,35 @@ import SwiftUI
 
 struct PatternListView: View {
     
+    let screenSize = UIScreen.main.bounds.size
     @ObservedObject var bleManager: BLEManager
     @State private var patterns: [PatternModel]?
     
     var body: some View {
-        List{
+        ZStack {
             if patterns == nil {
                 ProgressView()
             } else {
-                ForEach (0..<patterns!.count) { i in
-                    var pattern = patterns![i]
-                    blocoDeCor(bleManager: bleManager, selectedPattern: pattern.isActive, pattern: pattern)
+                List (patterns!) { pattern in
+                    
+                    blocoDeCor(bleManager: bleManager, selectedPattern: pattern.isActive, pattern: pattern, onEdit: {
+                        patterns = UserData().getAllPatterns()
+                    }, onDelete: {
+                        UserData().deletePattern(id: pattern.id)
+                        patterns = UserData().getAllPatterns()
+                    })
                 }
+                .listStyle(.plain)
+                .frame(width: screenSize.width, alignment: .center)
+                .refreshable {
+                    patterns = UserData().getAllPatterns()
+                }
+                
             }
-            
-        }
-        .listStyle(.plain)
-        .onAppear {
+        }.onAppear {
             patterns = UserData().getAllPatterns()
-            print(patterns)
         }
+        
     }
 }
 

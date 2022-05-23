@@ -52,16 +52,22 @@ struct ModalView: View {
             
             HStack{
                 if pattern.colors.count < 5 {
-                    dashComponent()
+                    dashComponent(action: {
+                        print("before = \(pattern.colors.count)")
+                        pattern.colors.append(ColorModel(color: colorPicked))
+                        print("after = \(pattern.colors.count)")
+                    })
                 }
                 
                 ForEach (0..<pattern.colors.count) { i in
-                    quadradinhoDeCor(isClicked: .constant(quadradinhoClicked == i), isClickable: true, color: quadradinhoClicked == i ? $colorPicked : $pattern.colors[i].color, clickedBorderColor: UIColor.white, action: {
-                        quadradinhoClicked = i
-                        pattern.colors[lastIndex].color = colorPicked
-                        lastIndex = i
-                    })
-                    .padding(.horizontal, 5)
+                    HStack {
+                        quadradinhoDeCor(isClicked: .constant(quadradinhoClicked == i), isClickable: true, color: quadradinhoClicked == i ? $colorPicked : $pattern.colors[i].color, clickedBorderColor: UIColor.white, action: {
+                            quadradinhoClicked = i
+                            pattern.colors[lastIndex].color = colorPicked
+                            lastIndex = i
+                        })
+                        .padding(.horizontal, 5)
+                    }
                 }
             }
             

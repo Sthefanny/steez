@@ -8,7 +8,8 @@
 import Foundation
 import UIKit
 
-class ColorModel: Codable {
+class ColorModel: Identifiable, Codable {
+    var id = UUID()
     @CodableColor var color : UIColor
     
     
