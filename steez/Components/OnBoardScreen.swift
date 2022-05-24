@@ -10,6 +10,8 @@ import SwiftUI
 struct OnBoardScreen: View {
     @State var maxWidth = UIScreen.main.bounds.width - 70
     @State var offset : CGFloat = 0
+    @State var showLeftButton = true
+    @State var leftButtonSpacing: CGFloat = 5
     
     var body: some View {
         ZStack {
@@ -37,18 +39,24 @@ struct OnBoardScreen: View {
                             .foregroundColor(.white)
                     }
                     .padding(20)
+                    .padding(.leading, 20)
                 }
                 Spacer(minLength: 0)
             }
             HStack {
                 HStack (alignment: .center, spacing: 40){
-                    VStack {
-                        Image(systemName: "circle.fill")
-                            .resizable()
-                            .frame(width: 5, height: 5)
-                        Image(systemName: "circle.fill")
-                            .resizable()
-                            .frame(width: 5, height: 5)
+                    if showLeftButton {
+                        VStack {
+                            Image(systemName: "circle.fill")
+                                .resizable()
+                                .frame(width: 5, height: 5)
+                            Image(systemName: "circle.fill")
+                                .resizable()
+                                .frame(width: 5, height: 5)
+                        }
+                    } else {
+                        VStack{}
+                            .padding(.leading, 20)
                     }
                     VStack {
                         Image(systemName: "circle.fill")
@@ -59,6 +67,7 @@ struct OnBoardScreen: View {
                             .frame(width: 5, height: 5)
                     }
                 }
+                .padding(.trailing, leftButtonSpacing)
                 .foregroundColor(.white)
                 .offset(x:5)
                 .frame(width: 115, height: 60)
@@ -81,6 +90,8 @@ struct OnBoardScreen: View {
     
     func onChanged(value: DragGesture.Value) {
         if value.translation.width > 0 && offset <= maxWidth - 115 {
+            leftButtonSpacing = 30
+            showLeftButton = false
             offset = value.translation.width
             if offset > 205 {
                 generateFeedback()
@@ -90,6 +101,8 @@ struct OnBoardScreen: View {
     
     func onEnd(value: DragGesture.Value) {
         withAnimation(Animation.easeOut(duration: 0.3)) {
+            leftButtonSpacing = 5
+            showLeftButton = true
             if offset > 205 {
                 offset = maxWidth - 110
                 
