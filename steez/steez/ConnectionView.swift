@@ -11,7 +11,18 @@ struct ConnectionView: View {
     @State var showSplash = true
     
     var body: some View {
-        skateSlider()
+        ZStack {
+            skateSlider()
+            SplashScreen()
+                .opacity(showSplash ? 1 : 0)
+                .onAppear {
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+                        withAnimation() {
+                            self.showSplash = false
+                        }
+                    }
+                }
+        }
     }
 }
 

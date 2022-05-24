@@ -10,6 +10,7 @@
 		0B634B2F282ED98900A9C166 /* blocoDeCor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B634B2E282ED98900A9C166 /* blocoDeCor.swift */; };
 		0B634B31282EE0DB00A9C166 /* button.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B634B30282EE0DB00A9C166 /* button.swift */; };
 		0B95D38228380B7800445D7B /* quadradinhoDeCor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0B95D38128380B7800445D7B /* quadradinhoDeCor.swift */; };
+		49BCF980283C678000FAAEB2 /* SplashScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49BCF97F283C678000FAAEB2 /* SplashScreen.swift */; };
 		49E1195A283C158E00808A24 /* LoaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E11959283C158E00808A24 /* LoaderView.swift */; };
 		49E1195C283C2C1000808A24 /* OnBoardScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 49E1195B283C2C1000808A24 /* OnBoardScreen.swift */; };
 		933BC663282EDAE500291AFC /* colorPickerComponent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 933BC662282EDAE500291AFC /* colorPickerComponent.swift */; };
@@ -42,6 +43,7 @@
 		0B634B2E282ED98900A9C166 /* blocoDeCor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = blocoDeCor.swift; sourceTree = "<group>"; };
 		0B634B30282EE0DB00A9C166 /* button.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = button.swift; sourceTree = "<group>"; };
 		0B95D38128380B7800445D7B /* quadradinhoDeCor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = quadradinhoDeCor.swift; sourceTree = "<group>"; };
+		49BCF97F283C678000FAAEB2 /* SplashScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashScreen.swift; sourceTree = "<group>"; };
 		49E11959283C158E00808A24 /* LoaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoaderView.swift; sourceTree = "<group>"; };
 		49E1195B283C2C1000808A24 /* OnBoardScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnBoardScreen.swift; sourceTree = "<group>"; };
 		933BC662282EDAE500291AFC /* colorPickerComponent.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = colorPickerComponent.swift; sourceTree = "<group>"; };
@@ -151,6 +153,7 @@
 				E5427329282D8F73009A0CC1 /* Assets.xcassets */,
 				E542732B282D8F73009A0CC1 /* Preview Content */,
 				E5E87759283AAB3800E87E66 /* UserData.swift */,
+				49BCF97F283C678000FAAEB2 /* SplashScreen.swift */,
 			);
 			path = steez;
 			sourceTree = "<group>";
@@ -271,6 +274,7 @@
 				E5E8774D283A87FC00E87E66 /* BLEManager.swift in Sources */,
 				0B634B2F282ED98900A9C166 /* blocoDeCor.swift in Sources */,
 				0B95D38228380B7800445D7B /* quadradinhoDeCor.swift in Sources */,
+				49BCF980283C678000FAAEB2 /* SplashScreen.swift in Sources */,
 				E5E87761283ACA9700E87E66 /* CodableColor.swift in Sources */,
 				0B634B31282EE0DB00A9C166 /* button.swift in Sources */,
 				E5E87758283AA69F00E87E66 /* HalfSheetController.swift in Sources */,
