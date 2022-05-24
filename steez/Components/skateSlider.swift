@@ -30,14 +30,16 @@ struct skateSlider: View {
     
     var body: some View {
         ZStack {
+            Color.black
+            Image("noise")
+                .resizable()
+                .scaledToFill()
             homeView
             loadingView
         }
-        .onAppear() {
-            
-        }
+        .ignoresSafeArea()
+        .onAppear() { }
         .onReceive(NotificationCenter.default.publisher(for: Notification.Name("Success")), perform: { _ in
-//            UserData().reset()
             bleManager.startScanning()
             withAnimation{self.showLoading = true}
             bleManager.deviceConnected = {
@@ -90,9 +92,6 @@ struct skateSlider: View {
 
 struct skateSlider_Previews: PreviewProvider {
     static var previews: some View {
-        ZStack {
-            Color.gray
-            skateSlider()
-        }
+        skateSlider()
     }
 }
