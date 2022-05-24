@@ -19,7 +19,11 @@ class UserData {
         do {
             defaults.register(
                 defaults: [
-                    allPatterns: try encoder.encode([PatternModel(id: 0, name: "default", isActive: true, colors: [ColorModel(color: UIColor.red), ColorModel(color: UIColor.green), ColorModel(color: UIColor.blue)])]),
+                    allPatterns: try encoder.encode([
+                        PatternModel(id: 0, name: "Padrao 01", isActive: true, colors: [ColorModel(color: UIColor.red), ColorModel(color: UIColor.green), ColorModel(color: UIColor.blue), ColorModel(color: UIColor.yellow), ColorModel(color: UIColor.purple)]),
+                        PatternModel(id: 1, name: "Padrao 02", isActive: false, colors: [ColorModel(color: UIColor.brown), ColorModel(color: UIColor.gray), ColorModel(color: UIColor.red), ColorModel(color: UIColor.cyan)]),
+                        PatternModel(id: 2, name: "Padrao 03", isActive: false, colors: [ColorModel(color: UIColor.orange), ColorModel(color: UIColor.magenta), ColorModel(color: UIColor.white)]),
+                    ]),
                 ]
             )
         } catch {
@@ -41,18 +45,41 @@ class UserData {
         return pattern
     }
     
+    func deletePattern(id: Int) -> Void {
+        var patterns = getAllPatterns()
+        
+        patterns?.removeAll(where: { pattern in
+            pattern.id == id
+        })
+        
+        do {
+            let encoder = JSONEncoder()
+            
+            let data = try encoder.encode(patterns)
+            
+            UserDefaults.standard.set(data, forKey: allPatterns)
+            
+        } catch {
+            print("Unable to Encode Array of patterns (\(error))")
+        }
+    }
+    
     func addPattern(id: Int, value: PatternModel) {
-        var patterns = [PatternModel]()
+        var patterns = getAllPatterns()
         let pattern = getPatternById(id: id)
         
+        if patterns == nil {
+            patterns = [PatternModel]()
+        }
+        
         if pattern == nil {
-            patterns.append(value)
+            patterns!.append(value)
         } else {
-            patterns.removeAll(where: { savedPatterns in
+            patterns!.removeAll(where: { savedPatterns in
                 savedPatterns.id == id
             })
             
-            patterns.append(value)
+            patterns!.append(value)
         }
         
         do {

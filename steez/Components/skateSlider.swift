@@ -40,6 +40,7 @@ struct skateSlider: View {
         .ignoresSafeArea()
         .onAppear() { }
         .onReceive(NotificationCenter.default.publisher(for: Notification.Name("Success")), perform: { _ in
+            UserData().reset()
             bleManager.startScanning()
             withAnimation{self.showLoading = true}
             bleManager.deviceConnected = {

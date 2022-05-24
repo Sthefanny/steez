@@ -6,7 +6,6 @@
 //
 import SwiftUI
 import BottomSheet
-import ColorPickerRing
 
 //The custom BottomSheetPosition enum with absolute values.
 enum ModalColorBottomSheetPosition: CGFloat, CaseIterable {
@@ -19,8 +18,9 @@ struct ModalView: View {
     
     @Environment(\.presentationMode) var presentationMode
     
+    @Binding var showingSheet: Bool
     @State private var name: String = ""
-    @State private var quadradinhoClicked: Int?
+    @State private var quadradinhoClicked: PatternModel?
     @State private var bottomSheetPosition: ModalColorBottomSheetPosition = .middle
     @State private var colorPicked = UIColor.red
     @State private var lastIndex = 0
@@ -39,44 +39,8 @@ struct ModalView: View {
     
     var body: some View {
         VStack(alignment: .center, spacing: 0) {
-            TextField("", text: $name)
-                .placeholder(when: name.isEmpty) {
-                    Text(pattern.name)
-                        .foregroundColor(.white.opacity(0.5))
-                }
-                .multilineTextAlignment(.center)
-                .font(.system(size: 26, weight: .bold))
-                .padding(.bottom, 40)
-                .foregroundColor(.white)
-            
-            
-            ZStack {
-                ColorPickerRing(color: $colorPicked, strokeWidth: 30)
-                    .frame(width: 140, height: 140, alignment: .center)
-                Circle()
-                    .frame(width: 80, height: 80, alignment: .center)
-                    .foregroundColor(Color(colorPicked))
-                
-            }
-            .padding(.bottom, 40)
-            
-            HStack{
-                if pattern.colors.count < 5 {
-                    dashComponent()
-                }
-                
-                ForEach (0..<pattern.colors.count) { i in
-                    quadradinhoDeCor(isClicked: .constant(quadradinhoClicked == i), isClickable: true, color: quadradinhoClicked == i ? $colorPicked : $pattern.colors[i].color, clickedBorderColor: UIColor.white, action: {
-                        quadradinhoClicked = i
-                        pattern.colors[lastIndex].color = colorPicked
-                        lastIndex = i
-                    })
-                    .padding(.horizontal, 5)
-                }
-            }
-            
-            saveButton(action: savePattern)
-                .padding(.top, 30)
+            _buildTitle
+            ColorList(pattern: $pattern, colors: $pattern.colors, showingSheet: $showingSheet)
             
             Spacer(minLength: 0)
         }
@@ -90,14 +54,16 @@ struct ModalView: View {
         })
     }
     
-    func savePattern() -> Void {
-        UserData().addPattern(id: pattern.id, value: pattern)
-        
-        let colors = pattern.colors.map{
-            $0.color
-        }
-        
-        bleManager.sendColors(colors)
+    var _buildTitle: some View {
+        TextField("", text: $name)
+            .placeholder(when: name.isEmpty) {
+                Text(pattern.name)
+                    .foregroundColor(.white.opacity(0.5))
+            }
+            .multilineTextAlignment(.center)
+            .font(.system(size: 26, weight: .bold))
+            .padding(.bottom, 40)
+            .foregroundColor(.white)
     }
     
     private func getAlertActions() -> some View {
@@ -130,10 +96,16 @@ struct ModalView: View {
             return Button("Ok", role: .cancel) { }
         }
     }
+    
+    func savePattern() -> Void {
+        
+        let colors = pattern.colors.map{$0.color}
+        bleManager.sendColors(colors)
+    }
 }
 
 struct ModalView_Previews: PreviewProvider {
     static var previews: some View {
-        ModalView(bleManager: BLEManager(), pattern: .constant(PatternModel(id: 0, name: "default", isActive: true, colors: [ColorModel(color: UIColor.red), ColorModel(color: UIColor.green), ColorModel(color: UIColor.blue)])))
+        ModalView(bleManager: BLEManager(), showingSheet: .constant(false), pattern: .constant(PatternModel(id: 0, name: "default", isActive: true, colors: [ColorModel(color: UIColor.red), ColorModel(color: UIColor.green), ColorModel(color: UIColor.blue)])))
     }
 }

@@ -8,9 +8,12 @@
 import SwiftUI
 
 struct dashComponent: View {
+    
+    @State var action: () -> Void = {}
+    
     var body: some View {
         Button(action: {
-            // What to perform
+            action()
         }) {
             VStack{
                 ZStack{

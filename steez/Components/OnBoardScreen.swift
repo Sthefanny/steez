@@ -10,23 +10,8 @@ import SwiftUI
 struct OnBoardScreen: View {
     @State var maxWidth = UIScreen.main.bounds.width - 70
     @State var offset : CGFloat = 0
-    
-    var body: some View {
-        VStack {
-            Image("steezRoundLogo")
-                .resizable()
-                .scaleEffect(0.75)
-                .scaledToFill()
-            Image("steezSkate")
-                .resizable()
-                .scaleEffect(0.9)
-                .rotationEffect(Angle(degrees: 10))
-                .scaledToFill()
-                .padding(.bottom, 20)
-            skateSlider
-        }
-        .frame(width: maxWidth, height: 60)
-    }
+    @State var showLeftButton = true
+    @State var leftButtonSpacing: CGFloat = 5
     
     func calculateWidth()-> CGFloat {
         let percent = offset / maxWidth
@@ -36,6 +21,8 @@ struct OnBoardScreen: View {
     
     func onChanged(value: DragGesture.Value) {
         if value.translation.width > 0 && offset <= maxWidth - 115 {
+            leftButtonSpacing = 30
+            showLeftButton = false
             offset = value.translation.width
             if offset > 205 {
                 generateFeedback()
@@ -45,6 +32,8 @@ struct OnBoardScreen: View {
     
     func onEnd(value: DragGesture.Value) {
         withAnimation(Animation.easeOut(duration: 0.3)) {
+            leftButtonSpacing = 5
+            showLeftButton = true
             if offset > 205 {
                 offset = maxWidth - 110
                 
@@ -64,6 +53,23 @@ struct OnBoardScreen: View {
         let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
         feedbackGenerator.prepare()
         feedbackGenerator.impactOccurred()
+    }
+    
+    var body: some View {
+        VStack {
+            Image("steezRoundLogo")
+                .resizable()
+                .scaleEffect(0.75)
+                .scaledToFill()
+            Image("steezSkate")
+                .resizable()
+                .scaleEffect(0.9)
+                .rotationEffect(Angle(degrees: 10))
+                .scaledToFill()
+                .padding(.bottom, 20)
+            skateSlider
+        }
+        .frame(width: maxWidth, height: 60)
     }
     
     private var skateSlider: some View {
@@ -92,18 +98,24 @@ struct OnBoardScreen: View {
                             .foregroundColor(.white)
                     }
                     .padding(20)
+                    .padding(.leading, 20)
                 }
                 Spacer(minLength: 0)
             }
             HStack {
                 HStack (alignment: .center, spacing: 40){
-                    VStack {
-                        Image(systemName: "circle.fill")
-                            .resizable()
-                            .frame(width: 5, height: 5)
-                        Image(systemName: "circle.fill")
-                            .resizable()
-                            .frame(width: 5, height: 5)
+                    if showLeftButton {
+                        VStack {
+                            Image(systemName: "circle.fill")
+                                .resizable()
+                                .frame(width: 5, height: 5)
+                            Image(systemName: "circle.fill")
+                                .resizable()
+                                .frame(width: 5, height: 5)
+                        }
+                    } else {
+                        VStack{}
+                            .padding(.leading, 20)
                     }
                     VStack {
                         Image(systemName: "circle.fill")
@@ -114,6 +126,7 @@ struct OnBoardScreen: View {
                             .frame(width: 5, height: 5)
                     }
                 }
+                .padding(.trailing, leftButtonSpacing)
                 .foregroundColor(.white)
                 .offset(x:5)
                 .frame(width: 115, height: 60)

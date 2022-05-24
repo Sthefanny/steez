@@ -16,57 +16,62 @@ struct blocoDeCor: View {
     @State private var showingSheet = false
     @State private var color = UIColor.red
     @State var pattern: PatternModel
+    @State var onActivate: () -> Void
+    @State var onDelete: () -> Void
     
     var body: some View {
         ZStack(alignment: .center){
             
-            RoundedRectangle(cornerRadius: 5)
-                .frame(width: screenSize.width - 40, height: 105, alignment: .center)
-                .foregroundColor(selectedPattern ? .gray : .clear)
+            RoundedRectangle(cornerRadius: 5)                .foregroundColor(selectedPattern ? .gray : .clear)
             
             VStack {
-                Text ("Padrao 01")
+                Text (pattern.name)
                     .font(.body)
                     .fontWeight(.bold)
-                    .frame(width: screenSize.width - 40, height: 18, alignment: .topLeading)
+                    .frame(width: screenSize.width - 80, height: 18, alignment: .topLeading)
                     .foregroundColor(.white)
-                    .padding(.leading, 40)
                     .padding(.bottom, 10)
                 
                 HStack {
                     
-                    ForEach (0..<pattern.colors.count) { i in
-                        quadradinhoDeCor(isClicked: .constant(false), isClickable: true, color: $pattern.colors[i].color, action: {showingSheet = true})
+                    ForEach ($pattern.colors) { actualColor in
+                        HStack {
+                            quadradinhoDeCor(isClicked: .constant(false), isClickable: true, color: actualColor.color, action: {
+                                showingSheet = true
+                            })
+                        }
                     }
                     
                 }
-                .padding(.bottom, 10)
             }
+            .padding(.top, 10)
+            .padding(.bottom, 20)
         }
         .onTapGesture {
             showingSheet = true
         }
         .sheet(isPresented: $showingSheet) {
-           HalfSheet {
-               ModalView(bleManager: bleManager, pattern: $pattern)
-                   .ignoresSafeArea()
-           }
+            HalfSheet {
+                ModalView(bleManager: bleManager, showingSheet: $showingSheet, pattern: $pattern)
+                    .ignoresSafeArea()
+            }
         }
         .swipeActions (allowsFullSwipe: false) {
             
             Button(role: .destructive) {
-                print("editar")
-            } label: {
-                Label("Editar", systemImage: "square.and.pencil")
-            }
-            .tint(.indigo)
-            
-            Button(role: .destructive) {
                 print("deletar")
+                onDelete()
             } label: {
                 Label("Deletar", systemImage: "trash.fill")
-                
             }
+            
+            Button(role: .destructive) {
+                print("ativar")
+                onActivate()
+            } label: {
+                Label("Ativar", systemImage: "square.and.pencil")
+            }
+            .tint(.indigo)
             
         }
         .listRowBackground(Color.clear)
@@ -78,6 +83,6 @@ struct blocoDeCor: View {
 
 struct blocoDeCor_Previews: PreviewProvider {
     static var previews: some View {
-        blocoDeCor(bleManager: BLEManager(), selectedPattern: true, pattern: PatternModel(id: 0, name: "default", isActive: true, colors: [ColorModel(color: UIColor.red), ColorModel(color: UIColor.green), ColorModel(color: UIColor.blue)]))
+        blocoDeCor(bleManager: BLEManager(), selectedPattern: true, pattern: PatternModel(id: 0, name: "default", isActive: true, colors: [ColorModel(color: UIColor.red), ColorModel(color: UIColor.green), ColorModel(color: UIColor.blue)]), onActivate: {}, onDelete: {})
     }
 }
