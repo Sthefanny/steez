@@ -37,7 +37,7 @@ struct skateSlider: View {
             
         }
         .onReceive(NotificationCenter.default.publisher(for: Notification.Name("Success")), perform: { _ in
-//            UserData().reset()
+            UserData().reset()
             bleManager.startScanning()
             withAnimation{self.showLoading = true}
             bleManager.deviceConnected = {

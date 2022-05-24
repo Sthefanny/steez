@@ -22,6 +22,7 @@
 		C7FFC19E2836BEEB0037C62F /* ModalView.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FFC19D2836BEEB0037C62F /* ModalView.swift */; };
 		C7FFC1A12836C3060037C62F /* BottomSheet in Frameworks */ = {isa = PBXBuildFile; productRef = C7FFC1A02836C3060037C62F /* BottomSheet */; };
 		C7FFC1A42836DDC00037C62F /* Util+View.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7FFC1A32836DDC00037C62F /* Util+View.swift */; };
+		E524B5BA283C551100164FC4 /* ColorList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E524B5B9283C551100164FC4 /* ColorList.swift */; };
 		E5427326282D8F6E009A0CC1 /* steezApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5427325282D8F6E009A0CC1 /* steezApp.swift */; };
 		E5427328282D8F6E009A0CC1 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E5427327282D8F6E009A0CC1 /* ContentView.swift */; };
 		E542732A282D8F73009A0CC1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = E5427329282D8F73009A0CC1 /* Assets.xcassets */; };
@@ -51,6 +52,7 @@
 		C7FFC19B2836BB1B0037C62F /* AddPatternButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPatternButton.swift; sourceTree = "<group>"; };
 		C7FFC19D2836BEEB0037C62F /* ModalView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalView.swift; sourceTree = "<group>"; };
 		C7FFC1A32836DDC00037C62F /* Util+View.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Util+View.swift"; sourceTree = "<group>"; };
+		E524B5B9283C551100164FC4 /* ColorList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorList.swift; sourceTree = "<group>"; };
 		E5427322282D8F6E009A0CC1 /* steez.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = steez.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		E5427325282D8F6E009A0CC1 /* steezApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = steezApp.swift; sourceTree = "<group>"; };
 		E5427327282D8F6E009A0CC1 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -98,6 +100,7 @@
 				E5E87760283ACA9700E87E66 /* CodableColor.swift */,
 				49E11959283C158E00808A24 /* LoaderView.swift */,
 				49E1195B283C2C1000808A24 /* OnBoardScreen.swift */,
+				E524B5B9283C551100164FC4 /* ColorList.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -250,6 +253,7 @@
 				C7476FAD282EDA3900185AE3 /* dashComponent.swift in Sources */,
 				E5E8774F283A88D900E87E66 /* ConnectionView.swift in Sources */,
 				49E1195A283C158E00808A24 /* LoaderView.swift in Sources */,
+				E524B5BA283C551100164FC4 /* ColorList.swift in Sources */,
 				933BC663282EDAE500291AFC /* colorPickerComponent.swift in Sources */,
 				E5E8775A283AAB3800E87E66 /* UserData.swift in Sources */,
 				E5E87756283AA64600E87E66 /* HalfSheet.swift in Sources */,
@@ -399,7 +403,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"steez/Preview Content\"";
-				DEVELOPMENT_TEAM = 38NCR48QFB;
+				DEVELOPMENT_TEAM = H7R4J57657;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Necessário para conexão Bluetooth";
@@ -430,7 +434,7 @@
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"steez/Preview Content\"";
-				DEVELOPMENT_TEAM = 38NCR48QFB;
+				DEVELOPMENT_TEAM = H7R4J57657;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_KEY_NSBluetoothAlwaysUsageDescription = "Necessário para conexão Bluetooth";

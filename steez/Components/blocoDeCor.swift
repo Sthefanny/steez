@@ -16,7 +16,7 @@ struct blocoDeCor: View {
     @State private var showingSheet = false
     @State private var color = UIColor.red
     @State var pattern: PatternModel
-    @State var onEdit: () -> Void
+    @State var onActivate: () -> Void
     @State var onDelete: () -> Void
     
     var body: some View {
@@ -34,8 +34,12 @@ struct blocoDeCor: View {
                 
                 HStack {
                     
-                    ForEach (0..<pattern.colors.count) { i in
-                        quadradinhoDeCor(isClicked: .constant(false), isClickable: true, color: $pattern.colors[i].color, action: {showingSheet = true})
+                    ForEach ($pattern.colors) { actualColor in
+                        HStack {
+                            quadradinhoDeCor(isClicked: .constant(false), isClickable: true, color: actualColor.color, action: {
+                                showingSheet = true
+                            })
+                        }
                     }
                     
                 }
@@ -47,10 +51,10 @@ struct blocoDeCor: View {
             showingSheet = true
         }
         .sheet(isPresented: $showingSheet) {
-           HalfSheet {
-               ModalView(bleManager: bleManager, pattern: $pattern)
-                   .ignoresSafeArea()
-           }
+            HalfSheet {
+                ModalView(bleManager: bleManager, showingSheet: $showingSheet, pattern: $pattern)
+                    .ignoresSafeArea()
+            }
         }
         .swipeActions (allowsFullSwipe: false) {
             
@@ -62,11 +66,10 @@ struct blocoDeCor: View {
             }
             
             Button(role: .destructive) {
-                print("editar")
-                showingSheet = true
-                onEdit()
+                print("ativar")
+                onActivate()
             } label: {
-                Label("Editar", systemImage: "square.and.pencil")
+                Label("Ativar", systemImage: "square.and.pencil")
             }
             .tint(.indigo)
             
@@ -80,6 +83,6 @@ struct blocoDeCor: View {
 
 struct blocoDeCor_Previews: PreviewProvider {
     static var previews: some View {
-        blocoDeCor(bleManager: BLEManager(), selectedPattern: true, pattern: PatternModel(id: 0, name: "default", isActive: true, colors: [ColorModel(color: UIColor.red), ColorModel(color: UIColor.green), ColorModel(color: UIColor.blue)]), onEdit: {}, onDelete: {})
+        blocoDeCor(bleManager: BLEManager(), selectedPattern: true, pattern: PatternModel(id: 0, name: "default", isActive: true, colors: [ColorModel(color: UIColor.red), ColorModel(color: UIColor.green), ColorModel(color: UIColor.blue)]), onActivate: {}, onDelete: {})
     }
 }

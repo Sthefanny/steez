@@ -20,8 +20,19 @@ struct PatternListView: View {
             } else {
                 List (patterns!) { pattern in
                     
-                    blocoDeCor(bleManager: bleManager, selectedPattern: pattern.isActive, pattern: pattern, onEdit: {
+                    blocoDeCor(bleManager: bleManager, selectedPattern: pattern.isActive, pattern: pattern, onActivate: {
+                        let active = UserData().getActivePattern()
+                        if active != nil {
+                            active!.isActive = false
+                            UserData().addPattern(id: active!.id, value: active!)
+                        }
+                        pattern.isActive = true
+                        UserData().addPattern(id: pattern.id, value: pattern)
                         patterns = UserData().getAllPatterns()
+                        let colors = pattern.colors.map{
+                            $0.color
+                        }
+                        bleManager.sendColors(colors)
                     }, onDelete: {
                         UserData().deletePattern(id: pattern.id)
                         patterns = UserData().getAllPatterns()
