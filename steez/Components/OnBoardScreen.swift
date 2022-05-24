@@ -56,6 +56,23 @@ struct OnBoardScreen: View {
     }
     
     var body: some View {
+        VStack {
+            Image("steezRoundLogo")
+                .resizable()
+                .scaleEffect(0.75)
+                .scaledToFill()
+            Image("steezSkate")
+                .resizable()
+                .scaleEffect(0.9)
+                .rotationEffect(Angle(degrees: 10))
+                .scaledToFill()
+                .padding(.bottom, 20)
+            skateSlider
+        }
+        .frame(width: maxWidth, height: 60)
+    }
+    
+    private var skateSlider: some View {
         ZStack {
             Capsule()
                 .fill(Color("branco"))
@@ -121,7 +138,6 @@ struct OnBoardScreen: View {
                 Spacer()
             }
         }
-        .frame(width: maxWidth, height: 60)
     }
 }
 

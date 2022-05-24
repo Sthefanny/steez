@@ -56,6 +56,7 @@ struct HomeView: View {
                         PatternListView(bleManager: bleManager)
                 }
             }
+            .padding(.top, 50)
         }
     }
 }
