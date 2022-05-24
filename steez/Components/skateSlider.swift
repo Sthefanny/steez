@@ -9,8 +9,8 @@ import SwiftUI
 
 struct skateSlider: View {
     @ObservedObject var bleManager = BLEManager()
-    @State var goToHome = false
-    @State var showLoading = false
+    @State private var goToHome = false
+    @State private var showLoading = false
     
     @ViewBuilder
     var homeView: some View {
@@ -52,21 +52,39 @@ struct skateSlider: View {
                 withAnimation{self.goToHome = true}
             }
         })
-        .alert("Dispositivo não encontrado", isPresented: $bleManager.presentDeviceNotFoundAlert, actions: {
-            Button("Ok", role: .cancel) {
+        .alert(bleManager.connectionStatus.alertTitle, isPresented: $bleManager.shouldShowConnectionAlert, actions: {
+            getAlertActions()
+        }, message: {
+            Text(bleManager.connectionStatus.alertMessage)
+        })
+    }
+    
+    private func getAlertActions() -> some View {
+        switch bleManager.connectionStatus {
+        case .succes:
+            return Button("Ok", role: .cancel) { }
+        case .fail:
+            return Button("Ok", role: .cancel) { }
+        case .receiveError:
+            return Button("Ok", role: .cancel) { }
+        case .didDisconnected:
+            return Button("Reconectar", role: .cancel) {
+                withAnimation{self.showLoading = true}
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
+                    NotificationCenter.default.post(name: NSNotification.Name("Success"), object: nil)
+                }
+            }
+        case .notFound:
+            return Button("Ok", role: .cancel) {
                 withAnimation{self.showLoading = false}
             }
-        }, message: {
-            Text("Não foi possível encontrar o dispositivo.\nReinicie-o e tente novamente")
-        })
-        .alert("Acesso ao Bluetooth não autorizado", isPresented: $bleManager.bluetoothDenied, actions: {
-            Button("Abrir configurações", role: .cancel) {
+        case .notAllowed:
+            return Button("Abrir configurações", role: .cancel) {
                 UIApplication.shared.open(URL.init(string: UIApplication.openSettingsURLString)!, options: [:], completionHandler: nil)
             }
-        }, message: {
-            Text("É preciso permitir a utilização do Bluetooth para utilizar o dispositivo.\nAcesse as configurações para autorizar.")
-        })
-
+        case .disconnected:
+            return Button("Ok", role: .cancel) { }
+        }
     }
 }
 

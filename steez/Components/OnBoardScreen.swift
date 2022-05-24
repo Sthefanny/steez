@@ -15,22 +15,16 @@ struct OnBoardScreen: View {
         ZStack {
             Capsule()
                 .fill(Color("branco"))
-            
             Text("Deslize para conectar")
                 .fontWeight(.regular)
                 .foregroundColor(Color("cinzaescuro"))
                 .padding(.leading,100)
-            
-            
             HStack {
-                
                 ZStack (alignment: .leading){
-                    
                     Rectangle()
                         .fill(Color("cinzaescuro"))
                         .frame(width: calculateWidth() + 115)
                         .cornerRadius(50)
-                    
                     VStack (alignment: .leading){
                         Image(systemName: "circle.fill")
                             .resizable()
@@ -44,35 +38,27 @@ struct OnBoardScreen: View {
                     }
                     .padding(20)
                 }
-                
                 Spacer(minLength: 0)
             }
-            
             HStack {
-                
                 HStack (alignment: .center, spacing: 40){
-                    
                     VStack {
                         Image(systemName: "circle.fill")
                             .resizable()
                             .frame(width: 5, height: 5)
-                        
                         Image(systemName: "circle.fill")
                             .resizable()
                             .frame(width: 5, height: 5)
                     }
-                    
                     VStack {
                         Image(systemName: "circle.fill")
                             .resizable()
                             .frame(width: 5, height: 5)
-                        
                         Image(systemName: "circle.fill")
                             .resizable()
                             .frame(width: 5, height: 5)
                     }
                 }
-                
                 .foregroundColor(.white)
                 .offset(x:5)
                 .frame(width: 115, height: 60)
@@ -81,7 +67,6 @@ struct OnBoardScreen: View {
                 .cornerRadius(50)
                 .offset(x: offset)
                 .gesture(DragGesture().onChanged(onChanged(value:)).onEnded(onEnd(value:)))
-                
                 Spacer()
             }
         }

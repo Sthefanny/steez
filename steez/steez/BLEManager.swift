@@ -5,7 +5,7 @@
 //  Created by Lucas Yoshio Nakano on 13/05/22.
 //
 
-import Foundation
+import SwiftUI
 import CoreBluetooth
 import UIKit
 
@@ -15,10 +15,59 @@ struct Peripheral: Identifiable {
 }
 
 class BLEManager: NSObject, ObservableObject {
-    @Published var bluetoothDenied = false // Bluetooth foi permitido pelo usuário
-    @Published var peripherals = [Peripheral]() // Todos os devices conectados ao app
+    enum ConnectionStatus {
+        case succes
+        case fail
+        case receiveError
+        case didDisconnected
+        case notFound
+        case notAllowed
+        case disconnected
+        
+        var alertTitle: String {
+            switch self {
+            case .succes:
+                return "Dispositivo conectado"
+            case .fail:
+                return "Falha ao conectar"
+            case .receiveError:
+                return "Falha o salvar dados"
+            case .didDisconnected:
+                return "Dispositivo desconectado"
+            case .notFound:
+                return "Dispositivo não encontrado"
+            case .notAllowed:
+                return "Acesso ao Bluetooth não autorizado"
+            case .disconnected:
+                return ""
+            }
+        }
+        
+        var alertMessage: String {
+            switch self {
+            case .succes:
+                return "Dispositivo pronto para uso."
+            case .fail:
+                return "Não foi possível estabelecer conexão com o dispositivo.\nTente novamente."
+            case .receiveError:
+                return "Não foi possível salvar os dados ao dispositivo.\nTente novamente."
+            case .didDisconnected:
+                return "Houve um problema com a conexão.\nConecte o dispositivo novamente para continuar."
+            case .notFound:
+                return "Não foi possível encontrar o dispositivo.\nReinicie-o e tente novamente."
+            case .notAllowed:
+                return "É preciso permitir a utilização do Bluetooth para utilizar o dispositivo.\nAcesse as configurações para autorizar."
+            case .disconnected:
+                return ""
+            }
+        }
+    }
+    
+    @Published var bluetoothDenied = false
+    @Published var peripherals = [Peripheral]()
     @Published var deviceConnected: () -> Void = {}
-    @Published var presentDeviceNotFoundAlert = false
+    @Published var shouldShowConnectionAlert = false
+    @Published var connectionStatus: ConnectionStatus = .disconnected
     
     private let characteristicsUUID = CBUUID(string: "43D7CB06-EE4C-4718-BE3E-5654DB9B3795")
     private let serviceUUIDpartKey = "4775-A77B-680697671B20"
@@ -36,11 +85,10 @@ class BLEManager: NSObject, ObservableObject {
     }
     
     func startScanning() {
-        presentDeviceNotFoundAlert = false
+        shouldShowConnectionAlert = false
+        connectionStatus = .disconnected
         timer = Timer.scheduledTimer(timeInterval: 5.0, target: self, selector: #selector(fireTimer), userInfo: nil, repeats: false)
         myCentral.scanForPeripherals(withServices: nil, options: nil)
-
-        // TODO: Início do scan, podemos colocar alguma representação visual para o usuário
     }
     
     func sendColors(_ value: [UIColor]) {
@@ -91,7 +139,8 @@ private extension BLEManager {
     }
     
     @objc func fireTimer() {
-        presentDeviceNotFoundAlert.toggle()
+        shouldShowConnectionAlert.toggle()
+        connectionStatus = .notFound
         timer.invalidate()
         myCentral.stopScan()
     }
@@ -100,6 +149,10 @@ private extension BLEManager {
 extension BLEManager: CBCentralManagerDelegate {
     func centralManagerDidUpdateState(_ central: CBCentralManager) {
         bluetoothDenied = central.state == .poweredOn ? false : true
+        if bluetoothDenied {
+            connectionStatus = .notAllowed
+            shouldShowConnectionAlert.toggle()
+        }
     }
     
     func centralManager(_ central: CBCentralManager, didDiscover peripheral: CBPeripheral, advertisementData: [String : Any], rssi RSSI: NSNumber) {
@@ -107,6 +160,7 @@ extension BLEManager: CBCentralManagerDelegate {
             if let uuid = dataServiceUUIDtoString(advertisementData[CBAdvertisementDataServiceUUIDsKey]) {
                 if name == controllerNameConstant && uuid.contains(serviceUUIDpartKey) {
                     timer.invalidate()
+                    connectionStatus = .succes
                     connectedPeripheral = peripheral
                     central.connect(peripheral)
                     central.stopScan()
@@ -124,12 +178,14 @@ extension BLEManager: CBCentralManagerDelegate {
     
     func centralManager(_ central: CBCentralManager, didFailToConnect peripheral: CBPeripheral, error: Error?) {
         print("Did failt to connect to \(peripheral) with error \(error?.localizedDescription ?? "")")
-        // TODO: Falha ao conectar ao device. Mostrar isso ao usuário
+        shouldShowConnectionAlert = true
+        connectionStatus = .fail
     }
     
     func centralManager(_ central: CBCentralManager, didDisconnectPeripheral peripheral: CBPeripheral, error: Error?) {
         print("Did disconnected from \(peripheral)")
-        // TODO: Device desconectado. Travar todos os elementos que não podem ser navegados e mostrar ao usuário
+        shouldShowConnectionAlert = true
+        connectionStatus = .didDisconnected
     }
 }
 
@@ -159,11 +215,11 @@ extension BLEManager: CBPeripheralDelegate {
             if let data = characteristic.value {
                 let notification = String(data: data, encoding: .ascii)
                 print(notification ?? "")
-                // TODO: Cor foi recebida corretamento pelo ESP. Podemos dar dismiss no modal
             }
             return
         }
         print("Error Sending Value: \(error.localizedDescription)")
-        // TODO: Falha ao receber a cor pelo ESP. Mostrar mensagem de erro ao usuário
+        shouldShowConnectionAlert = true
+        connectionStatus = .receiveError
     }
 }
