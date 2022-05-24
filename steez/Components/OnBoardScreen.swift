@@ -12,6 +12,61 @@ struct OnBoardScreen: View {
     @State var offset : CGFloat = 0
     
     var body: some View {
+        VStack {
+            Image("steezRoundLogo")
+                .resizable()
+                .scaleEffect(0.75)
+                .scaledToFill()
+            Image("steezSkate")
+                .resizable()
+                .scaleEffect(0.9)
+                .rotationEffect(Angle(degrees: 10))
+                .scaledToFill()
+                .padding(.bottom, 20)
+            skateSlider
+        }
+        .frame(width: maxWidth, height: 60)
+    }
+    
+    func calculateWidth()-> CGFloat {
+        let percent = offset / maxWidth
+        return percent * maxWidth
+        
+    }
+    
+    func onChanged(value: DragGesture.Value) {
+        if value.translation.width > 0 && offset <= maxWidth - 115 {
+            offset = value.translation.width
+            if offset > 205 {
+                generateFeedback()
+            }
+        }
+    }
+    
+    func onEnd(value: DragGesture.Value) {
+        withAnimation(Animation.easeOut(duration: 0.3)) {
+            if offset > 205 {
+                offset = maxWidth - 110
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
+                    NotificationCenter.default.post(name: NSNotification.Name("Success"), object: nil)
+                }
+                
+                offset = 0
+            }
+            else {
+                offset = 0
+            }
+        }
+    }
+    
+    func generateFeedback() {
+        let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
+        feedbackGenerator.prepare()
+        feedbackGenerator.impactOccurred()
+    }
+    
+    private var skateSlider: some View {
         ZStack {
             Capsule()
                 .fill(Color("branco"))
@@ -70,45 +125,6 @@ struct OnBoardScreen: View {
                 Spacer()
             }
         }
-        .frame(width: maxWidth, height: 60)
-    }
-    
-    func calculateWidth()-> CGFloat {
-        let percent = offset / maxWidth
-        return percent * maxWidth
-        
-    }
-    
-    func onChanged(value: DragGesture.Value) {
-        if value.translation.width > 0 && offset <= maxWidth - 115 {
-            offset = value.translation.width
-            if offset > 205 {
-                generateFeedback()
-            }
-        }
-    }
-    
-    func onEnd(value: DragGesture.Value) {
-        withAnimation(Animation.easeOut(duration: 0.3)) {
-            if offset > 205 {
-                offset = maxWidth - 110
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
-                    NotificationCenter.default.post(name: NSNotification.Name("Success"), object: nil)
-                }
-                
-                offset = 0
-            }
-            else {
-                offset = 0
-            }
-        }
-    }
-    
-    func generateFeedback() {
-        let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
-        feedbackGenerator.prepare()
-        feedbackGenerator.impactOccurred()
     }
 }
 

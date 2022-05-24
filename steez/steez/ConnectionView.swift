@@ -8,6 +8,8 @@
 import SwiftUI
 
 struct ConnectionView: View {
+    @State var showSplash = true
+    
     var body: some View {
         skateSlider()
     }
