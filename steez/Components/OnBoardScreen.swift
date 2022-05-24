@@ -13,6 +13,48 @@ struct OnBoardScreen: View {
     @State var showLeftButton = true
     @State var leftButtonSpacing: CGFloat = 5
     
+    func calculateWidth()-> CGFloat {
+        let percent = offset / maxWidth
+        return percent * maxWidth
+        
+    }
+    
+    func onChanged(value: DragGesture.Value) {
+        if value.translation.width > 0 && offset <= maxWidth - 115 {
+            leftButtonSpacing = 30
+            showLeftButton = false
+            offset = value.translation.width
+            if offset > 205 {
+                generateFeedback()
+            }
+        }
+    }
+    
+    func onEnd(value: DragGesture.Value) {
+        withAnimation(Animation.easeOut(duration: 0.3)) {
+            leftButtonSpacing = 5
+            showLeftButton = true
+            if offset > 205 {
+                offset = maxWidth - 110
+                
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
+                    NotificationCenter.default.post(name: NSNotification.Name("Success"), object: nil)
+                }
+                
+                offset = 0
+            }
+            else {
+                offset = 0
+            }
+        }
+    }
+    
+    func generateFeedback() {
+        let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
+        feedbackGenerator.prepare()
+        feedbackGenerator.impactOccurred()
+    }
+    
     var body: some View {
         ZStack {
             Capsule()
@@ -80,48 +122,6 @@ struct OnBoardScreen: View {
             }
         }
         .frame(width: maxWidth, height: 60)
-    }
-    
-    func calculateWidth()-> CGFloat {
-        let percent = offset / maxWidth
-        return percent * maxWidth
-        
-    }
-    
-    func onChanged(value: DragGesture.Value) {
-        if value.translation.width > 0 && offset <= maxWidth - 115 {
-            leftButtonSpacing = 30
-            showLeftButton = false
-            offset = value.translation.width
-            if offset > 205 {
-                generateFeedback()
-            }
-        }
-    }
-    
-    func onEnd(value: DragGesture.Value) {
-        withAnimation(Animation.easeOut(duration: 0.3)) {
-            leftButtonSpacing = 5
-            showLeftButton = true
-            if offset > 205 {
-                offset = maxWidth - 110
-                
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.35) {
-                    NotificationCenter.default.post(name: NSNotification.Name("Success"), object: nil)
-                }
-                
-                offset = 0
-            }
-            else {
-                offset = 0
-            }
-        }
-    }
-    
-    func generateFeedback() {
-        let feedbackGenerator = UIImpactFeedbackGenerator(style: .medium)
-        feedbackGenerator.prepare()
-        feedbackGenerator.impactOccurred()
     }
 }
 
